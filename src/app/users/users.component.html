@@ -14,7 +14,7 @@
 
 
 
-        <div class="col-lg-6 col-sm-6" *ngFor="let u of users">
+        <div class="col-lg-6 col-sm-6" *ngFor="let u of users ">
             <div class="card">
                 <div class="content">
                     <div class="row">
@@ -46,7 +46,7 @@
                     <div class="footer">
                         <hr />
                         <div class="stats">
-                            <i class="ti-bookmark" style="color:green "></i><small style="color:green; padding-right: 10px;">2 article</small>
+                            <i class="ti-bookmark" style="color:green "></i><small style="color:green; padding-right: 10px;">{{u.articles.length}} article</small>
 
                             <i class="ti-comment" style="color:#68B3C8 "></i><small style="color:#68B3C8; padding-right: 10px; ">2 comment</small>
                             <i class="ti-heart" style="color:#cc2478  "></i><small style="color:#cc2478  ; padding-right: 10px;">2 Like</small>
