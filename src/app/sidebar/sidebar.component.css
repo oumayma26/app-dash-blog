@@ -1,0 +1,8 @@
+.active {
+   
+    background-color: #cc2478 !important;
+}
+
+.nav li.active > a {
+    color: white !important;
+}

@@ -1,0 +1,105 @@
+.padding-card{
+  padding-bottom: 30px;
+}
+.left-container{
+  position: absolute;
+  border-right: 1px solid #e9ecef;
+  padding: 20px;
+  width: 250px;
+  height: 100%;
+
+
+
+}
+
+.rigth-container{
+  padding: 20px;
+  margin-left: 250px;
+}
+
+.page-container{
+  position: relative !important;
+  word-wrap: break-word;
+  min-height:1225px;
+  line-height:21px;
+}
+
+ul.list-style-none {
+  margin: 0;
+  padding: 0;
+
+}
+
+ul.list-style-none li {
+  list-style: none;
+}
+
+.list-style-none li.box-label a {
+  font-weight: 500;
+}
+
+ul.list-style-none li a {
+  color: #212529;
+  padding: 8px 0;
+  display: block;
+  text-decoration: none;
+}
+
+.list-style-none li a span {
+  float: right;
+}
+
+.list-style-none li.divider {
+  margin: 10px 0;
+  height: 1px;
+  background: #e9ecef;
+}
+
+.ml-auto, .mx-auto {
+  margin-left: auto!important;
+}
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.scroll-div{
+  overflow: scroll !important;
+  word-wrap: break-word !important;
+}
+
+.d-flex {
+  display: flex!important;
+}
+
+.align-self-center {
+  align-self: center!important;
+}
+.card-title {
+  margin-bottom: .75rem;
+}
+.card .card-title {
+  position: relative;
+  font-weight: 500;
+}
+.m-t-10 {
+  margin-top: 10px;
+}
+
+
+.contact-list td img {
+  width: 30px;
+}
+@media (max-width: 767px) {
+  .left-container {
+      width: 100%;
+      position: relative;
+      border: 0;
+  }
+
+  .right-container {
+    margin-left: 0;
+}
+}

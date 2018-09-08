@@ -1,0 +1,65 @@
+<div class="container-fluid">
+
+
+    <div class="row">
+
+       <div class="col-lg-12 col-sm-12">
+            <div class="card">
+                <div class="content">
+                    <input _ngcontent-c3="" class="form-control" id="demo-input-search2" placeholder="Search User By Name" type="text">
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="col-lg-6 col-sm-6" *ngFor="let u of users">
+            <div class="card">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <div class="icon-big icon-warning text-center">
+                                <img _ngcontent-c3="" alt="user" width="90" style=" padding-top: 25px;" class="img-circle" src="../assets/img/new_logo.png">
+                            </div>
+                        </div>
+                        <div class="col-xs-9">
+                            <span style="float: right;">
+
+                               <a style="color:black "  data-toggle="tooltip" data-placement="top" title="Delete user"> <i class="ti-close" ></i></a>
+
+                            </span>
+
+                             <h3 class="box-title m-b-0">{{u.name}} {{u.lastname}}</h3>
+
+
+
+                            <small>{{u.email}}</small>
+                            <address>
+                             Username :  {{u.username}}
+                                <br>
+                                <br>
+                                <abbr title="Date">D:</abbr> {{u.date | date}}
+                            </address>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <hr />
+                        <div class="stats">
+                            <i class="ti-bookmark" style="color:green "></i><small style="color:green; padding-right: 10px;">2 article</small>
+
+                            <i class="ti-comment" style="color:#68B3C8 "></i><small style="color:#68B3C8; padding-right: 10px; ">2 comment</small>
+                            <i class="ti-heart" style="color:#cc2478  "></i><small style="color:#cc2478  ; padding-right: 10px;">2 Like</small>
+
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    </div>
+
