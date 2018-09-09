@@ -8,6 +8,7 @@ const comment = new mongoose.Schema({
     type: String,
     required: true
   },
+  date : Date.now(),
   user: {type: Schema.Types.ObjectId, ref: 'user'},
   article : {type: Schema.Types.ObjectId, ref : 'article'}
 })

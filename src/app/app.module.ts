@@ -1,5 +1,7 @@
+import { UserLogic } from './ngrx/logic/user.store';
+import { UserEffects } from './ngrx/store/user/user.effect';
 import { BrowserXhr } from '@angular/http';
-import { UserService } from './users/service/user.service';
+import { UserService } from './ngrx/services/user.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -23,6 +25,9 @@ import { UpgradeComponent }   from './upgrade/upgrade.component';
 import { UsersComponent } from './users/users.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { userReducer } from './ngrx/store/user/user.reduce';
 // import {CustExtBrowserXhr} from './cust-ext-browser-xhr';
 @NgModule({
   declarations: [
@@ -46,12 +51,15 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     FooterModule,
     FixedPluginModule,
     HttpClientModule,
-    NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE'})
+    NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE'}),
 
+    StoreModule.forRoot({ users: userReducer}),
+    EffectsModule.forRoot([UserEffects]),
 
 
   ],
-    providers: [ UserService],
+    providers: [ UserService,
+    UserLogic],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
