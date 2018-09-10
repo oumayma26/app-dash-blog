@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
 import {Actions, Effect} from '@ngrx/effects';
 import {Observable} from 'rxjs/Observable';
 import {Action, Store} from '@ngrx/store';
-import {allActions, ActionTypes, GetAllUser, GetAllUserSuccess} from './user.action';
+import { allActions, ActionTypes, GetAllUser, GetAllUserSuccess, DeleteUser, DeleteUserSuccess } from './user.action';
 import {catchError, map, mergeMap, withLatestFrom} from 'rxjs/operators';
 import {of} from 'rxjs/internal/observable/of';
 
@@ -38,5 +38,19 @@ export class UserEffects {
           // catchError(() => of(new GeneralErrorDialog()))
         )
     ));
+
+
+    @Effect()
+    deleteUser$: Observable<Action> = this.actions$.ofType<DeleteUser>(ActionTypes.DeleteUser).pipe(
+      withLatestFrom(this.store$),
+      mergeMap(([action, storeState]) =>
+        this._service.deleteUser(action.id).pipe(map((res) => {
+        
+            return new DeleteUserSuccess(action.id);
+          }
+          )
+
+        )
+      ));
 
 }

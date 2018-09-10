@@ -18,6 +18,8 @@ const articleModel = mongoose.model("article", article)
 
 
     router.post("/register", (req,res)=>{
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "X-Requested-With");
         bcrypt.genSalt(10, function(err, salt) {
 
 
@@ -32,6 +34,8 @@ const articleModel = mongoose.model("article", article)
     })
 
     router.get("/articles/:username", async(req,res)=> {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "X-Requested-With");
         const result = await UserModel.findOne({username: req.params.username})
             .populate("articles", "title")
             .populate("articles", "date")
@@ -42,19 +46,25 @@ const articleModel = mongoose.model("article", article)
     })
 
     router.post("/update/:id", async(req,res)=>{
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "X-Requested-With");
         const result = await UserModel.findByIdAndUpdate({_id: req.params.id}, req.body).exec()
         res.send(result)
 
     })
 
     router.get("/delete/:id",(req,res)=>{
-        UserModel.findByIdAndRemove(
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "X-Requested-With");
+      user =  UserModel.findOneAndDelete(
            {_id: req.params.id} ).exec();
 
-       res.send("ok");
+       res.send(req.params.id);
    })
 
    router.post("/addArticle/:username",async(req,res)=>{
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
     const u = await UserModel.findOne({username:req.params.username}).exec();
 
@@ -78,6 +88,9 @@ const articleModel = mongoose.model("article", article)
 
   //delete article
   router.get("/deleteArticle/:username/:articleId", async(req,res)=>{
+    res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "X-Requested-With");
+
     let index= req.params.index;
     const u = await UserModel.findOne({username:req.params.username}).exec();
     console.log(u)

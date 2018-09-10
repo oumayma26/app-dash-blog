@@ -1,4 +1,4 @@
-<div class="container-fluid">
+ <div class="container-fluid">
 
 
     <div class="row">
@@ -12,21 +12,20 @@
 
         </div>
 
-
-
         <div class="col-lg-6 col-sm-6" *ngFor="let u of users ">
             <div class="card">
                 <div class="content">
                     <div class="row">
                         <div class="col-xs-3">
                             <div class="icon-big icon-warning text-center">
-                                <img _ngcontent-c3="" alt="user" width="90" style=" padding-top: 25px;" class="img-circle" src="../assets/img/new_logo.png">
+
+                             <a href="#"  data-toggle="modal" data-target="#myModal"> <img _ngcontent-c3="" alt="user" width="90" style=" padding-top: 25px;"  class="img-circle" src="../assets/img/new_logo.png"></a>
                             </div>
                         </div>
                         <div class="col-xs-9">
                             <span style="float: right;">
 
-                               <a style="color:black "  data-toggle="tooltip" data-placement="top" title="Delete user"> <i class="ti-close" ></i></a>
+                               <a style="color:black " (click)="deleteUser(u._id)" data-toggle="tooltip" data-placement="top" title="Delete user"> <i class="ti-close" ></i></a>
 
                             </span>
 
@@ -62,4 +61,11 @@
     </div>
 
     </div>
+
+<!-- <app-alert-msg></app-alert-msg> -->
+
+
+
+  <!-- <button class="btn btn-lg " (click)=" openFormModal()" >Launch demo modal</button> -->
+
 

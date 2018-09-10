@@ -1,5 +1,6 @@
 import { Article } from './article.model';
 export interface User {
+  _id: string;
   username: string;
   name: String;
   lastname: String;

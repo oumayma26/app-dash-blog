@@ -6,6 +6,27 @@ export enum ActionTypes {
   GetAllUser = '[User] GetAllUser',
   GetAllUserSuccess = '[User] GetAllUserSuccess',
 
+  DeleteUser = '[User] DeleteUser',
+  DeleteUserSuccess = '[User] DeleteUserSuccess',
+
+}
+
+export class DeleteUser implements Action {
+
+  readonly type = ActionTypes.DeleteUser;
+
+  constructor(public id: any) {
+
+  }
+}
+
+export class DeleteUserSuccess implements Action {
+
+  readonly type = ActionTypes.DeleteUserSuccess;
+
+  constructor(public id: any) {
+
+  }
 }
 
 
@@ -27,4 +48,6 @@ export class GetAllUserSuccess implements Action {
 
 export type allActions =
 GetAllUser
-  | GetAllUserSuccess;
+  | GetAllUserSuccess
+  | DeleteUser
+  | DeleteUserSuccess;

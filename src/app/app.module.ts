@@ -28,7 +28,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { userReducer } from './ngrx/store/user/user.reduce';
-// import {CustExtBrowserXhr} from './cust-ext-browser-xhr';
+import { AlertMsgComponent } from './alert-msg/alert-msg.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+// import * as bootstrap from "bootstrap";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +44,8 @@ import { userReducer } from './ngrx/store/user/user.reduce';
     NotificationsComponent,
     UpgradeComponent,
     UsersComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    AlertMsgComponent
   ],
   imports: [
     BrowserModule,
@@ -52,14 +56,13 @@ import { userReducer } from './ngrx/store/user/user.reduce';
     FixedPluginModule,
     HttpClientModule,
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE'}),
-
+    NgbModule.forRoot(),
     StoreModule.forRoot({ users: userReducer}),
-    EffectsModule.forRoot([UserEffects]),
-
-
+    EffectsModule.forRoot([UserEffects])
   ],
     providers: [ UserService,
     UserLogic],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent ],
+  entryComponents: [AlertMsgComponent]
 })
 export class AppModule { }
