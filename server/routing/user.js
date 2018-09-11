@@ -48,18 +48,18 @@ const articleModel = mongoose.model("article", article)
     router.post("/update/:id", async(req,res)=>{
       res.header("Access-Control-Allow-Origin", "*");
       res.header("Access-Control-Allow-Headers", "X-Requested-With");
+
         const result = await UserModel.findByIdAndUpdate({_id: req.params.id}, req.body).exec()
         res.send(result)
-
     })
 
     router.get("/delete/:id",(req,res)=>{
       res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Headers", "X-Requested-With");
+      res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
       user =  UserModel.findOneAndDelete(
            {_id: req.params.id} ).exec();
 
-       res.send(req.params.id);
+       res.send(user);
    })
 
    router.post("/addArticle/:username",async(req,res)=>{
@@ -111,6 +111,15 @@ const articleModel = mongoose.model("article", article)
 
     res.send(result);
   })
+
+
+  router.get("/searchByName/:name",async(req,res)=>{
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+
+    const u = await UserModel.findOne({$or: [ { name: req.params.name }, { lastname: req.params.name } ] }).exec();
+    res.send(u);
+  });
 
 
    module.exports = router;

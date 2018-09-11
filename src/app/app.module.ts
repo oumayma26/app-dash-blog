@@ -1,3 +1,4 @@
+import { UserFilterPipe } from './shared/filter-user-pipe';
 import { UserLogic } from './ngrx/logic/user.store';
 import { UserEffects } from './ngrx/store/user/user.effect';
 import { BrowserXhr } from '@angular/http';
@@ -30,8 +31,51 @@ import { EffectsModule } from '@ngrx/effects';
 import { userReducer } from './ngrx/store/user/user.reduce';
 import { AlertMsgComponent } from './alert-msg/alert-msg.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-// import * as bootstrap from "bootstrap";
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
+import {
+  MatAutocompleteModule,
+  MatBadgeModule,
+  MatBottomSheetModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatTreeModule,
+} from '@angular/material';
+// import * as bootstrap from "bootstrap";
+import { FormsModule } from '@angular/forms';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +89,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     UpgradeComponent,
     UsersComponent,
     ArticlesComponent,
-    AlertMsgComponent
+    AlertMsgComponent,
+    UserFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -58,7 +103,52 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE'}),
     NgbModule.forRoot(),
     StoreModule.forRoot({ users: userReducer}),
-    EffectsModule.forRoot([UserEffects])
+    EffectsModule.forRoot([UserEffects]),
+    BrowserAnimationsModule,
+    // angular mateiral module
+    CdkTableModule,
+    CdkTreeModule,
+    MatAutocompleteModule,
+    MatBadgeModule,
+    MatBottomSheetModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatTreeModule,
+    // devTolls google chrome
+    StoreDevtoolsModule.instrument({
+      maxAge: 10
+    }),
+    FilterPipeModule,
+    FormsModule
   ],
     providers: [ UserService,
     UserLogic],

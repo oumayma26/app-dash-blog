@@ -1,4 +1,4 @@
-import { DeleteUser } from './../store/user/user.action';
+import { DeleteUser, SearchUser } from './../store/user/user.action';
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
@@ -26,5 +26,9 @@ export class UserLogic {
 
   delteUser(id: any) {
     this._store.dispatch(new DeleteUser(id));
+  }
+
+  searchUser(text: any) {
+    this._store.dispatch(new SearchUser(text));
   }
 }

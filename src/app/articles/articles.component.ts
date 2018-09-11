@@ -1,4 +1,6 @@
+import { AlertMsgComponent } from './../alert-msg/alert-msg.component';
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-articles',
@@ -7,7 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticlesComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(AlertMsgComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
   ngOnInit() {
   }

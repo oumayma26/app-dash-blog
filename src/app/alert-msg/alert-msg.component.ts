@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 @Component({
   selector: 'app-alert-msg',
   templateUrl: './alert-msg.component.html',
@@ -7,13 +7,14 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AlertMsgComponent implements OnInit {
 
-  constructor( public activeModal: NgbActiveModal) { }
+  constructor(
+    ) {}
 
   ngOnInit() {
   }
 
   closeModal() {
-    this.activeModal.close('Modal Closed');
+
   }
 
 }
