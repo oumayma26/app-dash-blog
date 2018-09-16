@@ -16,17 +16,12 @@ import {MatDialog} from '@angular/material';
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
-})
-
+  })
 export class UsersComponent implements OnInit {
 
   model: any = {};
   users: any[];
   filterText: string;
-
-
-
-
 
   constructor(public _logic: UserLogic,
     public dialog: MatDialog) {
@@ -57,6 +52,11 @@ export class UsersComponent implements OnInit {
         console.log(state.users);
       });
 
+      this._logic.userState$.subscribe(
+        state => {
+          this.users = state.users;
+          console.log(state.users);
+        });
   }
 
   searchUser(e: KeyboardEvent, text) {

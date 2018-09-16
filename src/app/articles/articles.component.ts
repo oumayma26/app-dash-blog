@@ -1,3 +1,6 @@
+import { ArticleLogic } from './../ngrx/logic/articles.store';
+import { Article } from './../ngrx/models/article.model';
+import { ArticlesService } from './../ngrx/services/article.service';
 import { AlertMsgComponent } from './../alert-msg/alert-msg.component';
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
@@ -9,7 +12,15 @@ import {MatDialog} from '@angular/material';
 })
 export class ArticlesComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  articles: any[];
+  filterText : string;
+
+  constructor(public dialog: MatDialog,
+public _logic: ArticleLogic) {
+
+    this._logic.getListArticles();
+
+   }
 
   openDialog() {
     const dialogRef = this.dialog.open(AlertMsgComponent);
@@ -20,6 +31,25 @@ export class ArticlesComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this._logic.articlesState$.subscribe(
+      state => {
+        this.articles = state.articles;
+        console.log(state.articles);
+      });
+
+  }
+
+  deleteArticle(id) {
+    const dialogRef = this.dialog.open(AlertMsgComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      if (result === true ) {
+        this._logic.delteArticle(id);
+      }
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

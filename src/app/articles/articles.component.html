@@ -14,15 +14,13 @@
 
                   </ul>
                   <div style="overflow: auto">
-                  <ul class="list-style-none">
-                      <li><a href="javascript:void(0)">ALL</a></li>
-                      <li><a href="javascript:void(0)" >Work <span class="ti-close"></span></a></li>
-                      <li><a href="javascript:void(0)" >Family <span class="ti-close"></span></a></li>
-                      <li><a href="javascript:void(0)">Friends <span class="ti-close"></span></a></li>
-                      <li><a href="javascript:void(0)">Private <span class="ti-close"></span></a></li>
-
-
-                  </ul>
+                    <ul class="list-style-none">
+                        <li><a href="javascript:void(0)">ALL</a></li>
+                        <li><a href="javascript:void(0)" >Work <span class="ti-close"></span></a></li>
+                        <li><a href="javascript:void(0)" >Family <span class="ti-close"></span></a></li>
+                        <li><a href="javascript:void(0)">Friends <span class="ti-close"></span></a></li>
+                        <li><a href="javascript:void(0)">Private <span class="ti-close"></span></a></li>
+                    </ul>
 
 
                 </div>
@@ -34,7 +32,7 @@
                           <div class="align-self-center">
                               <h4 class="card-title m-t-10">All articles </h4></div>
                           <div class="ml-auto">
-                              <input type="text" id="demo-input-search2" placeholder="Search Article" class="form-control"> </div>
+                              <input type="text"  [(ngModel)] = "filterText" id="demo-input-search2" placeholder="Search Article" class="form-control"> </div>
                       </div>
                   </div>
 
@@ -42,146 +40,34 @@
                       <table id="demo-foo-addrow" class="table m-t-30 table-hover no-wrap contact-list footable-loaded footable" data-page-size="10">
                           <thead>
                               <tr>
-                                  <th class="footable-sortable">Author<span class="footable-sort-indicator"></span></th>
                                   <th class="footable-sortable">Title<span class="footable-sort-indicator"></span></th>
-                                  <th class="footable-sortable">Date<span class="footable-sort-indicator"></span></th>
                                   <th class="footable-sortable">Article<span class="footable-sort-indicator"></span></th>
-                                  <th class="footable-sortable">Category<span class="footable-sort-indicator"></span></th>
 
+                                  <th class="footable-sortable">Date<span class="footable-sort-indicator"></span></th>
+                                  <th class="footable-sortable">Author<span class="footable-sort-indicator"></span></th>
+
+                                  <th class="footable-sortable">Category<span class="footable-sort-indicator"></span></th>
                                   <th class="footable-sortable">Action<span class="footable-sort-indicator"></span></th>
                               </tr>
                           </thead>
                           <tbody>
-                              <tr class="footable-even" style="">
+                              <tr *ngFor="let a of articles | Articlefilter: filterText" class="footable-even">
+                                  <td>{{a.title}}</td>
+                                  <td>{{a.context  | slice:0:14}}
+                                    <span *ngIf="a.context.toString().length>15">...</span>
+                                  </td>
+                                  <td>{{a.date |date}}</td>
 
                                   <td>
                                       <a href="app-contact-detail.html">
                                         <img src="../assets/img/new_logo.png" alt="user" class="img-circle">
-                                        NameAuthor
+                                        {{a.author?.name}}  {{a.author?.lastname}}
                                       </a>
                                   </td>
-                                  <td>title</td>
-                                  <td>12-10-2014</td>
-                                  <td>hhh lkjl lkjll ljljljl kjlkjlkjljlj ljkljljl ....</td>
                                   <td><span class="label label-danger">Designer</span> </td>
 
                                   <td>
-                                      <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete"><i class="ti-close" aria-hidden="true"></i></button>
-                                  </td>
-                              </tr>
-
-
-                              <tr class="footable-even" style="">
-
-                                  <td>
-                                      <a href="app-contact-detail.html"><img src="../assets/img/new_logo.png" alt="user" class="img-circle"> Name Author</a>
-                                  </td>
-                                  <td>title</td>
-                                  <td>12-10-2014</td>
-                                  <td>hhh lkjl lkjll ljljljl kjlkjlkjljlj ljkljljl ....</td>
-                                  <td><span class="label label-primary">Designer</span> </td>
-
-                                  <td>
-                                      <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete"><i class="ti-close" aria-hidden="true"></i></button>
-                                  </td>
-                              </tr>
-
-                              <tr class="footable-even" style="">
-
-                                  <td>
-                                      <a href="app-contact-detail.html"><img src="../assets/img/new_logo.png" alt="user" class="img-circle"> Name Author</a>
-                                  </td>
-                                  <td>title</td>
-                                  <td>12-10-2014</td>
-                                  <td>hhh lkjl lkjll ljljljl kjlkjlkjljlj ljkljljl ....</td>
-                                  <td><span class="label label-success">Designer</span> </td>
-
-                                  <td>
-                                      <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete"><i class="ti-close" aria-hidden="true"></i></button>
-                                  </td>
-                              </tr>
-
-                              <tr class="footable-even" style="">
-
-                                  <td>
-                                      <a href="app-contact-detail.html"><img src="../assets/img/new_logo.png" alt="user" class="img-circle"> Name Author</a>
-                                  </td>
-                                  <td>title</td>
-                                  <td>12-10-2014</td>
-                                  <td>hhh lkjl lkjll ljljljl kjlkjlkjljlj ljkljljl ....</td>
-                                  <td><span class="label label-warning">Designer</span> </td>
-
-                                  <td>
-                                      <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete"><i class="ti-close" aria-hidden="true"></i></button>
-                                  </td>
-                              </tr><tr class="footable-even" style="">
-
-                                  <td>
-                                      <a href="app-contact-detail.html"><img src="../assets/img/new_logo.png" alt="user" class="img-circle"> Name Author</a>
-                                  </td>
-                                  <td>title</td>
-                                  <td>12-10-2014</td>
-                                  <td>hhh lkjl lkjll ljljljl kjlkjlkjljlj ljkljljl ....</td>
-                                  <td><span class="label label-danger">Designer</span> </td>
-
-                                  <td>
-                                      <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete"><i class="ti-close" aria-hidden="true"></i></button>
-                                  </td>
-                              </tr>
-                              <tr class="footable-even" style="">
-
-                                  <td>
-                                      <a href="app-contact-detail.html"><img src="../assets/img/new_logo.png" alt="user" class="img-circle"> Name Author</a>
-                                  </td>
-                                  <td>title</td>
-                                  <td>12-10-2014</td>
-                                  <td>hhh lkjl lkjll ljljljl kjlkjlkjljlj ljkljljl ....</td>
-                                  <td><span class="label label-danger">Designer</span> </td>
-
-                                  <td>
-                                      <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete"><i class="ti-close" aria-hidden="true"></i></button>
-                                  </td>
-                              </tr>
-                              <tr class="footable-even" style="">
-
-                                  <td>
-                                      <a href="app-contact-detail.html"><img src="../assets/img/new_logo.png" alt="user" class="img-circle"> Name Author</a>
-                                  </td>
-                                  <td>title</td>
-                                  <td>12-10-2014</td>
-                                  <td>hhh lkjl lkjll ljljljl kjlkjlkjljlj ljkljljl ....</td>
-                                  <td><span class="label label-danger">Designer</span> </td>
-
-                                  <td>
-                                      <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete"><i class="ti-close" aria-hidden="true"></i></button>
-                                  </td>
-                              </tr>
-                              <tr class="footable-even" style="">
-
-                                  <td>
-                                      <a href="app-contact-detail.html"><img src="../assets/img/new_logo.png" alt="user" class="img-circle"> Name Author</a>
-                                  </td>
-                                  <td>title</td>
-                                  <td>12-10-2014</td>
-                                  <td>hhh lkjl lkjll ljljljl kjlkjlkjljlj ljkljljl ....</td>
-                                  <td><span class="label label-danger">Designer</span> </td>
-
-                                  <td>
-                                      <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete"><i class="ti-close" aria-hidden="true"></i></button>
-                                  </td>
-                              </tr>
-                              <tr class="footable-even" style="">
-
-                                  <td>
-                                      <a href="app-contact-detail.html"><img src="../assets/img/new_logo.png" alt="user" class="img-circle"> Name Author</a>
-                                  </td>
-                                  <td>title</td>
-                                  <td>12-10-2014</td>
-                                  <td>hhh lkjl lkjll ljljljl kjlkjlkjljlj ljkljljl ....</td>
-                                  <td><span class="label label-danger">Designer</span> </td>
-
-                                  <td>
-                                      <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete"><i class="ti-close" aria-hidden="true"></i></button>
+                                      <button type="button" style="background-color: white; color: black;   border-color: white;" (click)="deleteArticle(a._id)" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete"><i class="ti-close" aria-hidden="true"></i></button>
                                   </td>
                               </tr>
 
@@ -189,7 +75,7 @@
                           <tfoot>
                               <tr>
                                   <td colspan="2">
-                                      <button type="button" class="btn btn-info btn-rounded" data-toggle="modal" data-target="#add-contact">Add New Contact</button>
+                                      <!-- <button type="button" class="btn btn-info btn-rounded" data-toggle="modal" data-target="#add-contact">Add New Contact</button> -->
                                   </td>
 
                                   <td colspan="7">

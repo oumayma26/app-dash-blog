@@ -1,7 +1,12 @@
+import { ArticleFilterPipe } from './shared/filter-article-pipe';
+import { ArticleLogic } from './ngrx/logic/articles.store';
+import { ArticleEffects } from './ngrx/store/article/article.effect';
+import { ArticlesService } from './ngrx/services/article.service';
 import { UserFilterPipe } from './shared/filter-user-pipe';
+
 import { UserLogic } from './ngrx/logic/user.store';
 import { UserEffects } from './ngrx/store/user/user.effect';
-import { BrowserXhr } from '@angular/http';
+// import { BrowserXhr } from '@angular/http';
 import { UserService } from './ngrx/services/user.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -71,11 +76,12 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatTreeModule,
+  MatTreeModule
 } from '@angular/material';
 // import * as bootstrap from "bootstrap";
 import { FormsModule } from '@angular/forms';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import { articleReducer } from './ngrx/store/article/article.reduce';
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,11 +96,13 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
     UsersComponent,
     ArticlesComponent,
     AlertMsgComponent,
-    UserFilterPipe
+    UserFilterPipe,
+    ArticleFilterPipe
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(AppRoutes,{ enableTracing: true }),
+    RouterModule.forRoot(AppRoutes,
+      {enableTracing: true }),
     SidebarModule,
     NavbarModule,
     FooterModule,
@@ -102,8 +110,8 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
     HttpClientModule,
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE'}),
     NgbModule.forRoot(),
-    StoreModule.forRoot({ users: userReducer}),
-    EffectsModule.forRoot([UserEffects]),
+    StoreModule.forRoot({ users: userReducer, articles : articleReducer}),
+    EffectsModule.forRoot([UserEffects, ArticleEffects]),
     BrowserAnimationsModule,
     // angular mateiral module
     CdkTableModule,
@@ -151,7 +159,10 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
     FormsModule
   ],
     providers: [ UserService,
-    UserLogic],
+      ArticlesService,
+    UserLogic,
+    ArticleLogic
+],
   bootstrap: [AppComponent ],
   entryComponents: [AlertMsgComponent]
 })
