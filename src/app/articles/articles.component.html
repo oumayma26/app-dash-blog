@@ -52,7 +52,9 @@
                           </thead>
                           <tbody>
                               <tr *ngFor="let a of articles | Articlefilter: filterText" class="footable-even">
-                                  <td>{{a.title}}</td>
+                                  <td>{{a.title  | slice:0:14}}
+                                      <span *ngIf="a.context.toString().length>15">...</span>
+                                  </td>
                                   <td>{{a.context  | slice:0:14}}
                                     <span *ngIf="a.context.toString().length>15">...</span>
                                   </td>
@@ -64,7 +66,7 @@
                                         {{a.author?.name}}  {{a.author?.lastname}}
                                       </a>
                                   </td>
-                                  <td><span class="label label-danger">Designer</span> </td>
+                                  <td><span class="label label-danger">{{a.category?.name}}</span> </td>
 
                                   <td>
                                       <button type="button" style="background-color: white; color: black;   border-color: white;" (click)="deleteArticle(a._id)" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete"><i class="ti-close" aria-hidden="true"></i></button>

@@ -15,8 +15,6 @@ export class ArticleFilterPipe implements PipeTransform {
     }  else {
       args = args.toUpperCase();
     }
-    console.log(args);
-
 
     return articles.filter((items: Article ) => {
       if (
@@ -24,12 +22,22 @@ export class ArticleFilterPipe implements PipeTransform {
       || (items.context.toUpperCase().startsWith(args) === true)) {
 
         return items;
-      } else if (items.author) {
-        if( (items.author.name.toUpperCase().startsWith(args) === true)
-        || (items.author.email.toUpperCase().startsWith(args) === true)
-        || (items.author.lastname.toUpperCase().startsWith(args) === true)
-        || (items.author.username.toUpperCase().startsWith(args) === true))
-        {
+      }
+       if (items.author) {
+          if( (items.author.name.toUpperCase().startsWith(args) === true)
+          || (items.author.email.toUpperCase().startsWith(args) === true)
+          || (items.author.lastname.toUpperCase().startsWith(args) === true)
+          || (items.author.username.toUpperCase().startsWith(args) === true))
+          {
+
+            return items;
+          }
+
+
+      }  if (items.category) {
+
+
+        if (items.category.name.toUpperCase().startsWith(args) === true) {
           return items;
         }
       }

@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
+
+
 const category = new mongoose.Schema({
 
   name : {
@@ -8,5 +10,7 @@ const category = new mongoose.Schema({
     required: true
   }
 })
+
+
 
 module.exports = category;
