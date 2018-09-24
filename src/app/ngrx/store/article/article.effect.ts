@@ -1,3 +1,4 @@
+import { Category } from './../../models/category.model';
 import { Article } from './../../models/article.model';
 import { UserService } from './../../services/user.service';
 import { User } from '../../models/user.model';
@@ -33,8 +34,11 @@ export class ArticleEffects {
       this._service.getAll()
         .pipe(map((res: any) => {
 
-          // console.log("reees", res);
-            return new GetAllArticleSuccess(res as Article[]);
+      //  this._service.getAllCategory().pipe(map((res2: any) => {
+
+             return new GetAllArticleSuccess(res as Article[]);
+
+
           }
           )
           // ,

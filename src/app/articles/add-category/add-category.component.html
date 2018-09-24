@@ -1,0 +1,22 @@
+<h2 mat-dialog-title style="color: #cc2478 ">Add Category</h2>
+<form name="formFildes" class="example-form" [formGroup]="formFildes" (ngSubmit)="save()" >
+
+<mat-dialog-content>
+
+        <mat-form-field class="example-full-width"   >
+          <input matInput  formControlName="name" placeholder="Name" formControlName="name" />
+
+        </mat-form-field>
+        <br>
+        <span *ngIf="formFildes.get('name').invalid" [ngClass] = "'error'"> Name is required </span>
+
+</mat-dialog-content>
+<br>
+
+<mat-dialog-actions>
+
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+
+  <button type="submit" [disabled]="!formFildes.valid" mat-button  style=" margin-left: 100px;  background-color: #68B3C8; color: #ffffff ">Save</button>
+</mat-dialog-actions>
+</form>

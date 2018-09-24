@@ -1,3 +1,7 @@
+import { BlogModule } from './blog/blog.module';
+import { CategoryLogic } from './ngrx/logic/category.store';
+import { AddCategoryComponent } from './articles/add-category/add-category.component';
+import { CategoryEffects } from './ngrx/store/category/category.effect';
 import { ArticleFilterPipe } from './shared/filter-article-pipe';
 import { ArticleLogic } from './ngrx/logic/articles.store';
 import { ArticleEffects } from './ngrx/store/article/article.effect';
@@ -42,6 +46,7 @@ import {CdkTreeModule} from '@angular/cdk/tree';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 
 import {
+
   MatAutocompleteModule,
   MatBadgeModule,
   MatBottomSheetModule,
@@ -79,9 +84,11 @@ import {
   MatTreeModule
 } from '@angular/material';
 // import * as bootstrap from "bootstrap";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { articleReducer } from './ngrx/store/article/article.reduce';
+import { categoriesReducer } from './ngrx/store/category/category.reduce';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,9 +104,12 @@ import { articleReducer } from './ngrx/store/article/article.reduce';
     ArticlesComponent,
     AlertMsgComponent,
     UserFilterPipe,
-    ArticleFilterPipe
+    ArticleFilterPipe,
+    AddCategoryComponent,
+    HomeComponent
   ],
   imports: [
+    BlogModule,
     BrowserModule,
     RouterModule.forRoot(AppRoutes,
       {enableTracing: true }),
@@ -110,9 +120,16 @@ import { articleReducer } from './ngrx/store/article/article.reduce';
     HttpClientModule,
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE'}),
     NgbModule.forRoot(),
-    StoreModule.forRoot({ users: userReducer, articles : articleReducer}),
-    EffectsModule.forRoot([UserEffects, ArticleEffects]),
+    StoreModule.forRoot({
+       users: userReducer,
+       articles : articleReducer,
+       categories: categoriesReducer}),
+    EffectsModule.forRoot([
+      UserEffects,
+      ArticleEffects,
+      CategoryEffects]),
     BrowserAnimationsModule,
+
     // angular mateiral module
     CdkTableModule,
     CdkTreeModule,
@@ -156,14 +173,16 @@ import { articleReducer } from './ngrx/store/article/article.reduce';
       maxAge: 10
     }),
     FilterPipeModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
     providers: [ UserService,
       ArticlesService,
     UserLogic,
-    ArticleLogic
+    ArticleLogic,
+    CategoryLogic
 ],
   bootstrap: [AppComponent ],
-  entryComponents: [AlertMsgComponent]
+  entryComponents: [AlertMsgComponent, AddCategoryComponent]
 })
 export class AppModule { }

@@ -20,7 +20,19 @@ const article = new mongoose.Schema({
     context: String,
     date: { type: Number, default: Date.now},
     author: {type : Schema.Types.ObjectId , ref : "user"},
-    category: { type : Schema.Types.ObjectId , ref :'category' }
+    category: { type : Schema.Types.ObjectId , ref :'category' },
+
+    imgProfilePath : String,
+    avatar: {
+        fieldname: String,
+        originalname: String,
+        encoding: String,
+        mimetype: String,
+        destination: String,
+        filename: String,
+        path: String,
+        size: Number
+    }
 })
 
 

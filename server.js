@@ -2,6 +2,13 @@ const express = require("express")
 ,cors = require('cors')
 const bodyparser = require("body-parser")
 const app = express()
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 const path = require('path');
 
 require('./server/config/passport');
@@ -49,37 +56,19 @@ app.use("/photos",photos);
 
 
 // Add headers
-app.use(function (req, res, next) {
-
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-  // Request headers you wish to allow
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
-
-  // Pass to next layer of middleware
-  next();
-});
 
 
 // after the code that uses bodyParser and other cool stuff
-var originsWhitelist = [
-  'http://localhost:4200'   //this is my front-end url for development
-];
-var corsOptions = {
-  origin: function(origin, callback){
-        var isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
-        callback(null, isWhitelisted);
-  },
-  credentials:true
-}
-//here is the magic
-app.use(cors(corsOptions));
+// var originsWhitelist = [
+//   'http://localhost:4200'   //this is my front-end url for development
+// ];
+// var corsOptions = {
+//   origin: function(origin, callback){
+//         var isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
+//         callback(null, isWhitelisted);
+//   },
+//   credentials:true
+// }
+// //here is the magic
+// app.use(cors(corsOptions));
 app.listen(3000 )

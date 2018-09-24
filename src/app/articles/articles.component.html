@@ -8,19 +8,46 @@
           <div class="content page-container" >
               <div class="left-container ">
 
-                  <ul class="list-style-none">
-                      <li class="box-label"><a href="javascript:void(0)" (click)="openDialog()">Category <span class="ti-plus"></span></a></li>
+                <table>
+                  <tr>
+                    <td  style="width: 220px; color: #68B3C8 ; font-weight: bold">
+                      <h5>Category</h5></td>
+                    <td>
+                        <button type="button" style="background-color: white; color: black;   border-color: white;" (click)="openModalaSaveCategory()" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete">
+                          <span class="ti-plus"></span>
+                        </button>
+                    </td>
+                  </tr>
+                </table>
+
+                  <!-- <ul class="list-style-none">
+                      <li class="box-label"><a href="javascript:void(0)" (click)="openDialog()">
+                       <p>Category</p> <span class="ti-plus"></span></a></li>
                       <li class="divider"></li>
 
-                  </ul>
+                  </ul> -->
                   <div style="overflow: auto">
-                    <ul class="list-style-none">
+                     <ul class="list-style-none">
                         <li><a href="javascript:void(0)">ALL</a></li>
-                        <li><a href="javascript:void(0)" >Work <span class="ti-close"></span></a></li>
-                        <li><a href="javascript:void(0)" >Family <span class="ti-close"></span></a></li>
-                        <li><a href="javascript:void(0)">Friends <span class="ti-close"></span></a></li>
-                        <li><a href="javascript:void(0)">Private <span class="ti-close"></span></a></li>
+                        <li *ngFor="let category of categories">
+                          <a href="javascript:void(0)" >{{category.name}}</a> <a (click)="deleteCategory(category._id)"> <span class="ti-close"></span></a>
+                        </li>
+
                     </ul>
+
+
+                    <!-- <table>
+                        <tr>
+                          <td  style="width: 200px;" class="list-style-none">All</td>
+                          <td><span class="ti-close"></span></td>
+                        </tr>
+
+                        <tr *ngFor="let category of categories">
+                            <td  style="width: 200px;" class="list-style-none">{{category.name}}</td>
+                            <td><span class="ti-close"></span></td>
+                        </tr>
+
+                    </table> -->
 
 
                 </div>
@@ -30,7 +57,7 @@
                   <div class="right-page-header">
                       <div class="d-flex">
                           <div class="align-self-center">
-                              <h4 class="card-title m-t-10">All articles </h4></div>
+                              <h5 class="card-title m-t-10" style="color: #68B3C8;  ">All articles </h5></div>
                           <div class="ml-auto">
                               <input type="text"  [(ngModel)] = "filterText" id="demo-input-search2" placeholder="Search Article" class="form-control"> </div>
                       </div>

@@ -14,7 +14,7 @@ export function deleteFromArray(arr: any[], id: any): any {
   for (let i = 0; i < arr.length; i++) {
 
     if (id === arr[i]._id) {
-      console.log('spliiiiiiiiiice');
+
       arr.splice(i, 1);
     }
   }

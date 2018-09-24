@@ -1,3 +1,4 @@
+import { CategoryState } from './../store/category/category.state';
 import { DeleteUser, SearchUser } from './../store/user/user.action';
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
@@ -15,6 +16,7 @@ export class UserLogic {
 
   userState$: Observable<UserState>;
 
+
   constructor(private _store: Store<AppState>) {
     this.userState$ = this._store.select('users');
   }
@@ -31,4 +33,5 @@ export class UserLogic {
   searchUser(text: any) {
     this._store.dispatch(new SearchUser(text));
   }
+
 }

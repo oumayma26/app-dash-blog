@@ -1,3 +1,4 @@
+import { Category } from './../../models/category.model';
 import { Article } from './../../models/article.model';
 import {Action} from '@ngrx/store';
 
@@ -7,8 +8,9 @@ export enum ActionTypes {
   GetAllArticle = '[Article] GetAllArticle',
   GetAllArticleSuccess = '[Article] GetAllArticleSuccess',
   DeleteArticle = '[Article] DeleteArticle',
-  DeleteArticleSuccess = '[Article] DeleteArticleSuccess'
-
+  DeleteArticleSuccess = '[Article] DeleteArticleSuccess',
+  GetAllCategory = '[Category] GetAllCategory',
+  GetAllCategorySuccess = '[Category] GetAllCategorySuccess'
 }
 
 /*
@@ -49,8 +51,26 @@ export class GetAllArticleSuccess implements Action {
     }
   }
 
+
+  /*
+  -------------- All Category -------------------------------------- */
+// export class GetAllCategory implements Action {
+//   readonly type = ActionTypes.GetAllCategory;
+
+//   constructor() {
+
+//   }
+// }
+
+// export class GetAllCategorySuccess implements Action {
+//   readonly type = ActionTypes.GetAllCategorySuccess;
+
+//   constructor(public categoris: Category[]) {
+
+//   }
+// }
 export type allActions =
 GetAllArticle
   | GetAllArticleSuccess
-  |DeleteArticle
-  |DeleteArticleSuccess;
+  | DeleteArticle
+  | DeleteArticleSuccess;

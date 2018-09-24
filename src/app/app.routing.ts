@@ -1,3 +1,4 @@
+import { HomeComponent } from './home/home.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { UsersComponent } from './users/users.component';
 import { Routes } from '@angular/router';
@@ -16,6 +17,10 @@ export const AppRoutes: Routes = [
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
+    },
+    {
+      path: 'home',
+      component: HomeComponent,
     },
     {
       path: 'users',
