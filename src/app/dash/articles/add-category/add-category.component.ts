@@ -1,11 +1,13 @@
-import { AlertMsgComponent } from './../../alert-msg/alert-msg.component';
-import { ArticlesService } from './../../ngrx/services/article.service';
-import { Category } from './../../ngrx/models/category.model';
-import { CategoryLogic } from './../../ngrx/logic/category.store';
+import { Category } from './../../../ngrx/models/category.model';
+import { ArticlesService } from './../../../ngrx/services/article.service';
+import { CategoryLogic } from './../../../ngrx/logic/category.store';
+
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
-import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-@Component({
+import { AlertMsgComponent } from '../../../alert-msg/alert-msg.component';
+import { OnInit, Component } from '@angular/core';
+
+@Component ({
   selector: 'app-add-category',
   templateUrl: './add-category.component.html',
   styleUrls: ['./add-category.component.css']
@@ -36,7 +38,7 @@ save() {
   const c: Category = this.formFildes.value as Category;
   this._logic.saveCategory(c);
 
-//this.service.addCategory(c).subscribe();
+
 
 }
 

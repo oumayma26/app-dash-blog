@@ -1,6 +1,8 @@
-import { BlogModule } from './blog/blog.module';
+import { UsersComponent } from './dash/users/users.component';
+import { AddCategoryComponent } from './dash/articles/add-category/add-category.component';
+
 import { CategoryLogic } from './ngrx/logic/category.store';
-import { AddCategoryComponent } from './articles/add-category/add-category.component';
+
 import { CategoryEffects } from './ngrx/store/category/category.effect';
 import { ArticleFilterPipe } from './shared/filter-article-pipe';
 import { ArticleLogic } from './ngrx/logic/articles.store';
@@ -23,17 +25,11 @@ import { FooterModule } from './shared/footer/footer.module';
 import { NavbarModule} from './shared/navbar/navbar.module';
 import { FixedPluginModule} from './shared/fixedplugin/fixedplugin.module';
 import { NguiMapModule} from '@ngui/map';
+import { UserComponent } from './user/user.component';
+import { TypographyComponent } from './typography/typography.component';
 
-import { DashboardComponent }   from './dashboard/dashboard.component';
-import { UserComponent }   from './user/user.component';
-import { TableComponent }   from './table/table.component';
-import { TypographyComponent }   from './typography/typography.component';
-import { IconsComponent }   from './icons/icons.component';
-import { MapsComponent }   from './maps/maps.component';
-import { NotificationsComponent }   from './notifications/notifications.component';
-import { UpgradeComponent }   from './upgrade/upgrade.component';
-import { UsersComponent } from './users/users.component';
-import { ArticlesComponent } from './articles/articles.component';
+
+
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -88,31 +84,32 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { articleReducer } from './ngrx/store/article/article.reduce';
 import { categoriesReducer } from './ngrx/store/category/category.reduce';
-import { HomeComponent } from './home/home.component';
+
+import { DashComponent } from './dash/dash.component';
+import { ArticlesComponent } from './dash/articles/articles.component';
+import { BlogComponent } from './blog/blog.component';
+import { LoginComponent } from './login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     UserComponent,
-    TableComponent,
     TypographyComponent,
-    IconsComponent,
-    MapsComponent,
-    NotificationsComponent,
-    UpgradeComponent,
     UsersComponent,
     ArticlesComponent,
     AlertMsgComponent,
     UserFilterPipe,
     ArticleFilterPipe,
     AddCategoryComponent,
-    HomeComponent
+    DashComponent,
+    BlogComponent,
+    LoginComponent
   ],
   imports: [
-    BlogModule,
     BrowserModule,
     RouterModule.forRoot(AppRoutes,
       {enableTracing: true }),
+
     SidebarModule,
     NavbarModule,
     FooterModule,
@@ -185,4 +182,5 @@ import { HomeComponent } from './home/home.component';
   bootstrap: [AppComponent ],
   entryComponents: [AlertMsgComponent, AddCategoryComponent]
 })
+
 export class AppModule { }

@@ -1,15 +1,10 @@
-import { DeleteUser } from './../ngrx/store/user/user.action';
-import { AlertMsgComponent } from './../alert-msg/alert-msg.component';
-
-import { UserService } from './../ngrx/services/user.service';
-import { UserLogic } from './../ngrx/logic/user.store';
 
 
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {environment } from '../../environments/environment';
-import { User } from '../ngrx/models/user.model';
+
 import {MatDialog} from '@angular/material';
+import { UserLogic } from '../../ngrx/logic/user.store';
+import { AlertMsgComponent } from '../../alert-msg/alert-msg.component';
 
 
  @Component({
@@ -32,6 +27,7 @@ export class UsersComponent implements OnInit {
     this._logic.getListUsers(true);
   }
 
+
   deleteUser(id) {
     const dialogRef = this.dialog.open(AlertMsgComponent);
 
@@ -49,13 +45,12 @@ export class UsersComponent implements OnInit {
     this._logic.userState$.subscribe(
       state => {
         this.users = state.users;
-        console.log(state.users);
       });
 
       this._logic.userState$.subscribe(
         state => {
           this.users = state.users;
-          console.log(state.users);
+
         });
   }
 

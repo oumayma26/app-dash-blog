@@ -1,13 +1,12 @@
-import { DeleteCategory } from './../ngrx/store/category/category.action';
-import { CategoryLogic } from './../ngrx/logic/category.store';
-import { AddCategoryComponent } from './add-category/add-category.component';
-import { Category } from './../ngrx/models/category.model';
-import { ArticleLogic } from './../ngrx/logic/articles.store';
-import { Article } from './../ngrx/models/article.model';
-import { ArticlesService } from './../ngrx/services/article.service';
-import { AlertMsgComponent } from './../alert-msg/alert-msg.component';
+import { AlertMsgComponent } from './../../alert-msg/alert-msg.component';
+import { ArticlesService } from './../../ngrx/services/article.service';
+import { CategoryLogic } from './../../ngrx/logic/category.store';
+import { ArticleLogic } from './../../ngrx/logic/articles.store';
+import { Category } from './../../ngrx/models/category.model';
+
 import { Component, OnInit, Input } from '@angular/core';
 import {MatDialog} from '@angular/material';
+import { AddCategoryComponent } from './add-category/add-category.component';
 
 @Component({
   selector: 'app-articles',
@@ -52,7 +51,7 @@ private service: ArticlesService
         console.log(state.categories);
         this.categories = state.categories;
       }
-    )
+    );
 
   }
 

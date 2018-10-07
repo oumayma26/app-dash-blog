@@ -1,7 +1,8 @@
-const SECRETKEY = 'jwtsecretkey123'
+const SECRETKEY = 'oumayma'
 const EXPIRESIN = '5h'
 const AUTHSCHEME = 'jwt'
-module.exports = {  
+
+module.exports = {
     jwtSecret: SECRETKEY,
     jwtSession: {
         session: false

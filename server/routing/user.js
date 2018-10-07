@@ -16,13 +16,15 @@ const UserModel = mongoose.model("users",User)
 const article = require("../models/article")
 const articleModel = mongoose.model("article", article)
 
+var passport = require('passport');
+require('../config/passport')(passport);
+
+
 
     router.post("/register", (req,res)=>{
       res.header("Access-Control-Allow-Origin", "*");
       res.header("Access-Control-Allow-Headers", "X-Requested-With");
         bcrypt.genSalt(10, function(err, salt) {
-
-
             bcrypt.hash(req.body.password, salt, function(err, hash) {
                 req.body.password = hash;
                 UserModel(req.body).save(err => {
@@ -103,13 +105,16 @@ const articleModel = mongoose.model("article", article)
     res.send(result)
   })
 
-  router.get("/", async(req,res)=>{
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    const result = await UserModel.find();
+  router.get("/",  passport.authenticate("jwt", { session: false}),async(req,res)=>{
+    var token = getToken(req.headers);
+    console.log("token",token)
+       if (token) {
+      const result = await UserModel.find();
+      res.send(result);
+    }else {
+      return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    }
 
-
-    res.send(result);
   })
 
 
@@ -122,4 +127,17 @@ const articleModel = mongoose.model("article", article)
   });
 
 
-   module.exports = router;
+  getToken = function (headers) {
+    if (headers && headers.authorization) {
+      var parted = headers.authorization.split(' ');
+      if (parted.length === 2) {
+        return parted[1];
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  };
+
+  module.exports = router;
