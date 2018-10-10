@@ -1,6 +1,7 @@
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import {  FormGroup , FormBuilder, Validators} from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../ngrx/services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,20 +9,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  formFildes: FormGroup;
+  myForm: FormGroup;
 
-  constructor(   private formBuilder: FormBuilder) {
-    this.formFildes = this.formBuilder.group({
-      name: new FormControl('', [Validators.required, Validators.maxLength(25)]),
-      password: new FormControl('', [Validators.required])
+  constructor(   private formBuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
+    private authService: AuthService) {
+    this.myForm = new FormBuilder().group({
+      email: ['', Validators.required ],
+      password: ['', Validators.required ]
     });
   }
 
+  get f() { return this.myForm.controls; }
   ngOnInit() {
   }
 
   login() {
+    console.log('login');
+    if (this.myForm.valid) {
+      console.log('email', this.myForm.value.email);
+      this.authService.login(this.myForm.value.email, this.myForm.value.password).subscribe(
+        data => {
+            this.router.navigate(['dashbord']);
+        },
+        error => {
 
+            this.router.navigate(['login']);
+        });
+
+    } else {
+
+        this.router.navigate(['login']);
+    }
   }
 
 }

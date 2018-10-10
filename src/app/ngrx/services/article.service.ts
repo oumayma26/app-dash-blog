@@ -53,7 +53,7 @@ export class ArticlesService {
   }
 
   addCategory(c) {
-    return  this.http.post<Category>( 'http://localhost:3000/article/addCategory',c );
+    return  this.http.post<Category>( 'http://localhost:3000/article/addCategory', c );
   }
 
 

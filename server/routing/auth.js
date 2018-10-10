@@ -50,6 +50,8 @@ router.post("/updateCategory/:id", async(req,res)=>{
 // });
 
 router.post('/login', async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   const result = await UserModel.findOne({
       email: req.body.email
   }).exec();

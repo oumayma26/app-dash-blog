@@ -1,3 +1,7 @@
+import { HandleErrorInterceptor } from './ngrx/services/handleerror.interceptor';
+import { TokenInterceptor } from './ngrx/services/token-interceptor';
+import { AuthGuard } from './ngrx/services/auth-guard.service';
+import { AuthService } from './ngrx/services/auth.service';
 import { UsersComponent } from './dash/users/users.component';
 import { AddCategoryComponent } from './dash/articles/add-category/add-category.component';
 
@@ -173,11 +177,24 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     ReactiveFormsModule
   ],
-    providers: [ UserService,
-      ArticlesService,
+    providers: [UserService,
+    ArticlesService,
     UserLogic,
     ArticleLogic,
-    CategoryLogic
+    CategoryLogic,
+
+    AuthService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HandleErrorInterceptor,
+      multi: true
+    }
 ],
   bootstrap: [AppComponent ],
   entryComponents: [AlertMsgComponent, AddCategoryComponent]
