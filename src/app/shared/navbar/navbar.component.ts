@@ -1,3 +1,4 @@
+import { AuthService } from './../../ngrx/services/auth.service';
 import { Component, OnInit, Renderer, ViewChild, ElementRef } from '@angular/core';
 import { ROUTES } from '../../sidebar/sidebar.component';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -18,7 +19,11 @@ export class NavbarComponent implements OnInit{
 
     @ViewChild("navbar-cmp") button;
 
-    constructor(location:Location, private renderer : Renderer, private element : ElementRef) {
+    constructor(location: Location,
+       private renderer: Renderer,
+      private element: ElementRef,
+      private service: AuthService,
+      private router: Router) {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
@@ -46,7 +51,7 @@ export class NavbarComponent implements OnInit{
         if(this.sidebarVisible == false){
             setTimeout(function(){
                 toggleButton.classList.add('toggled');
-            },500);
+            }, 500);
             body.classList.add('nav-open');
             this.sidebarVisible = true;
         } else {
@@ -55,4 +60,9 @@ export class NavbarComponent implements OnInit{
             body.classList.remove('nav-open');
         }
     }
+
+  logout() {
+    this.service.logout();
+    this.router.navigate(['login']);
+  }
 }
