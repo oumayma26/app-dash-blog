@@ -1,3 +1,4 @@
+import { HomeblogComponent } from './blog/homeblog/homeblog.component';
 import { HandleErrorInterceptor } from './ngrx/services/handleerror.interceptor';
 import { TokenInterceptor } from './ngrx/services/token-interceptor';
 import { AuthGuard } from './ngrx/services/auth-guard.service';
@@ -19,7 +20,7 @@ import { UserEffects } from './ngrx/store/user/user.effect';
 // import { BrowserXhr } from '@angular/http';
 import { UserService } from './ngrx/services/user.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -44,7 +45,7 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
 import { FilterPipeModule } from 'ngx-filter-pipe';
-
+import { HeaderblogComponent} from './blog/headerblog/headerblog.component';
 import {
 
   MatAutocompleteModule,
@@ -93,6 +94,10 @@ import { DashComponent } from './dash/dash.component';
 import { ArticlesComponent } from './dash/articles/articles.component';
 import { BlogComponent } from './blog/blog.component';
 import { LoginComponent } from './login/login.component';
+import { ArticleblogComponent } from './blog/articleblog/articleblog.component';
+import { MyArticlesComponent } from './blog/my-articles/my-articles.component';
+import { NewArticleComponent } from './blog/new-article/new-article.component';
+
 
 @NgModule({
   declarations: [
@@ -107,7 +112,12 @@ import { LoginComponent } from './login/login.component';
     AddCategoryComponent,
     DashComponent,
     BlogComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderblogComponent,
+    HomeblogComponent,
+    ArticleblogComponent,
+    MyArticlesComponent,
+    NewArticleComponent
   ],
   imports: [
     BrowserModule,
@@ -196,8 +206,12 @@ import { LoginComponent } from './login/login.component';
       multi: true
     }
 ],
+ exports: [HomeblogComponent],
   bootstrap: [AppComponent ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+
   entryComponents: [AlertMsgComponent, AddCategoryComponent]
 })
+
 
 export class AppModule { }

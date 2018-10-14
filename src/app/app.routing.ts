@@ -1,3 +1,5 @@
+import { NewArticleComponent } from './blog/new-article/new-article.component';
+import { HomeblogComponent } from './blog/homeblog/homeblog.component';
 import { AuthGuard } from './ngrx/services/auth-guard.service';
 import { DashComponent } from "./dash/dash.component";
 import { LoginComponent } from "./login/login.component";
@@ -11,6 +13,7 @@ import { Routes } from "@angular/router";
 import { UserComponent } from "./user/user.component";
 
 import { TypographyComponent } from "./typography/typography.component";
+import { MyArticlesComponent } from './blog/my-articles/my-articles.component';
 
 export const AppRoutes: Routes = [
   {
@@ -34,12 +37,31 @@ export const AppRoutes: Routes = [
   {
     path : 'blog',
     component : BlogComponent,
-    canActivate : [AuthGuard]
+    canActivate : [AuthGuard],
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      {
+        path: 'home',
+        component: HomeblogComponent,
+        canActivate : [AuthGuard]
+      },
+      {
+        path: 'myarticles',
+        component: MyArticlesComponent,
+        canActivate : [AuthGuard]
+      },
+      {
+        path: 'newarticle',
+        component: NewArticleComponent,
+        canActivate : [AuthGuard]
+      }
+    ]
   },
   {
     path : 'login',
     component : LoginComponent
-  }
+  },
+  {path: '', redirectTo : 'dashbord/users' ,  pathMatch: 'full', canActivate: [AuthGuard] }
 
 ];
 

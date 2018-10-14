@@ -1,0 +1,128 @@
+#header-wrap {
+    position: relative;
+    background-color: #fff;
+    z-index: 1000;
+    margin: 0;
+    box-shadow: 0 0 4px 0 rgba(0,0,0,0.07);
+    margin-bottom: 40px;
+}
+.header-header {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 0;
+}
+.header-header .container {
+  position: relative;
+  margin: 0 auto;
+}
+.header-logo {
+  position: relative;
+  float: left;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+.section, .widget, .widget ul {
+  margin: 0;
+  padding: 0;
+}
+.section, .widget, .widget ul {
+  margin: 0;
+  padding: 0;
+}
+
+.header-logo .header-brand {
+  display: inline-block;
+  line-height: 0;
+}
+a, a:visited {
+  text-decoration: none;
+}
+
+.header-menu {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  z-index: 1010;
+  border-top: 1px solid #ebebeb;
+}
+#main-menu {
+  position: relative;
+  height: 50px;
+  font-family: 'Roboto Slab',sans-serif;
+  z-index: 15;
+}
+#main-menu .show-menu {
+  display: block;
+}
+/*#main-menu .widget, #main-menu .widget > .widget-title {
+  display: none;
+}*/
+
+dl, ul {
+  list-style-position: inside;
+  font-weight: 400;
+  list-style: none;
+}
+
+#main-menu ul > li {
+  float: left;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  transition: color .17s;
+}
+#main-menu ul > li > ul > li a {
+  display: block;
+  height: 36px;
+  font-size: 13px;
+  line-height: 36px;
+  box-sizing: border-box;
+  padding: 0 15px;
+  margin: 0;
+  transition: color .17s;
+}
+a {
+  color: #222222;
+}
+#main-menu ul > li > a {
+  position: relative;
+  font-size: 14px;
+  color: #222222;
+  font-weight: 400;
+  line-height: 50px;
+  display: inline-block;
+  margin: 0;
+  padding: 0 15px;
+  transition: color .17s;
+}
+.mobile-menu-wrap {
+  display: none;
+}
+
+.clearfix {
+  clear: both;
+}
+@media (max-width: 980px)
+{
+    .header-menu {
+      padding: 0;
+    }
+    #main-menu {
+      display: none;
+    }
+    .mobile-menu-wrap, .mobile-menu-toggle {
+      display: block;
+  }
+}
+
+@media (max-width: 1100px)
+{
+  .header-menu {
+    height: 51px;
+    box-sizing: border-box;
+    padding: 0 20px;
+  }
+}
