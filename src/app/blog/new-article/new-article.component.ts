@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-new-article',
@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewArticleComponent implements OnInit {
 
-  constructor() { }
+  @Output() title = new EventEmitter();
+  constructor() {
+    this.title.emit('New Article');
+  }
 
   ngOnInit() {
   }

@@ -1,0 +1,16 @@
+.content-new-article{
+  margin-right: auto;
+  margin-left: auto;
+  width: 60%;
+
+  margin-bottom: 100px;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}

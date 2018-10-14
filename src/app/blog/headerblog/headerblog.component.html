@@ -24,27 +24,23 @@
   </ul>
   <ul style="float: right; margin-left: 60px" >
       <li><a  role="menuitem" style="float : right" [routerLink]="['/blog/newarticle']">New Article</a></li>
-      <li><a  role="menuitem" style="float : right">Logout</a></li>
+      <li><a  role="menuitem" style="float : right"  (click)="logout()">Logout</a></li>
   </ul>
   </div></div>
 
   <span class="show-search"></span>
   </div>
   <div class="mobile-menu-wrap">
-  <div class="mobile-menu"><ul id="main-menu-nav" role="menubar">
+  <div class="mobile-menu">
+    <ul id="main-menu-nav" role="menubar">
   <li><a href="/" role="menuitem">Home</a></li>
   <li class="has-sub"><a href="#" role="menuitem">Features</a><ul class="sub-menu m-sub"><li class="has-sub"><a href="#" role="menuitem">Multi DropDown</a><ul class="sub-menu2 m-sub"><li><a href="#" role="menuitem">DropDown 1</a></li><li><a href="#" role="menuitem">DropDown 2</a></li><li><a href="#" role="menuitem">DropDown 3</a></li></ul><div class="submenu-toggle"></div></li><li><a href="https://spicer-way2themes.blogspot.com/p/post-format-and-page-markup.html" role="menuitem">ShortCodes</a></li><li><a href="https://www.sorabloggingtips.com/2017/01/how-to-add-sitemap-widget-in-blogspot-blogs.html" role="menuitem">SiteMap</a></li><li><a href="https://spicer-way2themes.blogspot.com/way2themes" role="menuitem">Error Page</a></li></ul><div class="submenu-toggle"></div></li>
-
-
-
-
-
-
 
   <li><a role="menuitem">Documentation</a></li>
   <li><a role="menuitem">Video Documentation</a></li>
   <li><a  role="menuitem">Download This Template</a></li>
-  </ul></div>
+  </ul>
+</div>
   </div>
   </div>
   </div>

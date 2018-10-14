@@ -40,7 +40,9 @@
 a, a:visited {
   text-decoration: none;
 }
-
+#main-menu ul > li a:active{
+  background-color: aqua;
+}
 .header-menu {
   position: relative;
   width: 100%;

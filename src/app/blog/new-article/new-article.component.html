@@ -1,3 +1,27 @@
-<p>
-  new-article works!
-</p>
+<div class="content-new-article">
+  <div class="row">
+    <div>
+      <div style="color: #cc2478; font-weight: bold"><h3>New Article</h3></div>
+        <div class="example-container">
+            <mat-form-field>
+              <input autocomplete="off" matInput placeholder="Title">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select placeholder="Category">
+                  <mat-option value="option">Category 1</mat-option>
+                  <mat-option value="option">Category 2</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <textarea matInput [froalaEditor] placeholder="Context"></textarea>
+            </mat-form-field>
+
+        </div>
+    </div>
+    <button mat-button style="float: right; background-color: #68B3C8; color: white" > Save</button>
+
+  </div>
+
+</div>

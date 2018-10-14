@@ -97,7 +97,7 @@ import { LoginComponent } from './login/login.component';
 import { ArticleblogComponent } from './blog/articleblog/articleblog.component';
 import { MyArticlesComponent } from './blog/my-articles/my-articles.component';
 import { NewArticleComponent } from './blog/new-article/new-article.component';
-
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
   declarations: [
@@ -123,7 +123,6 @@ import { NewArticleComponent } from './blog/new-article/new-article.component';
     BrowserModule,
     RouterModule.forRoot(AppRoutes,
       {enableTracing: true }),
-
     SidebarModule,
     NavbarModule,
     FooterModule,
@@ -185,14 +184,15 @@ import { NewArticleComponent } from './blog/new-article/new-article.component';
     }),
     FilterPipeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
   ],
     providers: [UserService,
     ArticlesService,
     UserLogic,
     ArticleLogic,
     CategoryLogic,
-
     AuthService,
     AuthGuard,
     {
@@ -204,9 +204,9 @@ import { NewArticleComponent } from './blog/new-article/new-article.component';
       provide: HTTP_INTERCEPTORS,
       useClass: HandleErrorInterceptor,
       multi: true
-    }
+    },
 ],
- exports: [HomeblogComponent],
+  exports: [HomeblogComponent],
   bootstrap: [AppComponent ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 
