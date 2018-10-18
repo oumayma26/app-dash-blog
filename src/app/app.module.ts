@@ -98,6 +98,7 @@ import { ArticleblogComponent } from './blog/articleblog/articleblog.component';
 import { MyArticlesComponent } from './blog/my-articles/my-articles.component';
 import { NewArticleComponent } from './blog/new-article/new-article.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { CardArticleComponent } from './blog/card-article/card-article.component';
 
 @NgModule({
   declarations: [
@@ -117,7 +118,8 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     HomeblogComponent,
     ArticleblogComponent,
     MyArticlesComponent,
-    NewArticleComponent
+    NewArticleComponent,
+    CardArticleComponent
   ],
   imports: [
     BrowserModule,
@@ -210,7 +212,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
   bootstrap: [AppComponent ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 
-  entryComponents: [AlertMsgComponent, AddCategoryComponent]
+  entryComponents: [AlertMsgComponent, AddCategoryComponent, ArticleblogComponent]
 })
 
 

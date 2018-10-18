@@ -4,17 +4,18 @@
     <mat-card-title>{{article.title}}</mat-card-title>
     <mat-card-subtitle>{{article.author.name}} {{article.author.lastname}}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image width="200" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
   <mat-card-content>
     <p>
-      {{article.context}}
+      {{article.context | slice:0:25}}
+      <span *ngIf="article.context.length>24">...</span>
     </p>
   </mat-card-content>
   <mat-card-actions>
       <div class="stats">
-          <i class="ti-comment" style="color:#68B3C8 "></i><small style="color:#68B3C8; padding-right: 10px; ">2 comments</small>
+          <i class="ti-comment" style="color:#68B3C8 "></i><small style="color:#68B3C8; padding-right: 10px; "> 2 comments</small>
           <i class="ti-heart" style="color:#cc2478  "></i><small style="color:#cc2478  ; padding-right: 10px;">2 Like</small>
-
+          <a (click)="seeMore(article)"><small mat-button style="float: right">See More</small></a>
         </div>
   </mat-card-actions>
 </mat-card>
