@@ -3,9 +3,12 @@ const mongoose = require("mongoose")
 
 const article = require("../models/article")
 const articleModel = mongoose.model("article", article)
+const User = require("../models/user")
+const UserModel = mongoose.model("users",User)
 mongoose.set('useCreateIndex', true)
 mongoose.connect("mongodb://localhost:27017/blogApp", {useNewUrlParser: true})
-
+var passport = require('passport');
+require('../config/passport')(passport);
 const multer = require('multer');
 
 const path = require('path');
@@ -125,6 +128,16 @@ router.get("/deleteCategory/:id", async(req,res)=>{
   const result = await categoryModel.findOneAndDelete(
     {_id:req.params.id}).exec();
       res.send(result);
+})
+
+router.get("/:email",passport.authenticate("jwt", { session: false}), async(req,res)=> {
+
+  const result = await UserModel.findOne({email: req.params.email})
+      .populate("articles")
+      .sort({date: 'descending'})
+      .exec();
+          res.send(result);
+
 })
 
 

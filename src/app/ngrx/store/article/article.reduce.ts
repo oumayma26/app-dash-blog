@@ -14,6 +14,8 @@ export function articleReducer(state = initialState, action: allActions): Articl
 
     // get all articles
     case ActionTypes.GetAllArticle:
+     // get all ArticlesByEmail
+     case ActionTypes.ArticlesByEmail:
 
     // delete user
     case ActionTypes.DeleteArticle:
@@ -21,6 +23,9 @@ export function articleReducer(state = initialState, action: allActions): Articl
 
     // all articles success
     case ActionTypes.GetAllArticleSuccess:
+      return {articles: action.articles, loading: false};
+
+      case ActionTypes.ArticlesByEmailSuccess:
       return {articles: action.articles, loading: false};
 
     // delete user success

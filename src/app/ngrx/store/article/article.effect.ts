@@ -8,7 +8,7 @@ import {Actions, Effect} from '@ngrx/effects';
 import {Observable} from 'rxjs/Observable';
 import {Action, Store} from '@ngrx/store';
 import { allActions, ActionTypes, GetAllArticle, GetAllArticleSuccess,
-  DeleteArticle, DeleteArticleSuccess } from './article.action';
+  DeleteArticle, DeleteArticleSuccess, ArticlesByEmail , ArticlesByEmailSuccess } from './article.action';
 import {catchError, map, mergeMap, withLatestFrom} from 'rxjs/operators';
 import {of} from 'rxjs/internal/observable/of';
 
@@ -43,6 +43,19 @@ export class ArticleEffects {
           )
           // ,
           // catchError(() => of(new GeneralErrorDialog()))
+        )
+    ));
+
+     @Effect()
+    getArticleByEmail$: Observable<Action> = this.actions$.ofType<ArticlesByEmail>(ActionTypes.ArticlesByEmail).pipe(
+    withLatestFrom(this.store$),
+    mergeMap(([action, storeState]) =>
+      this._service.getArticlesByEmail(action.email)
+      .pipe(map((res: any) => {
+        console.log(res);
+             return new ArticlesByEmailSuccess(res.articles as Article[]);
+
+          })
         )
     ));
 

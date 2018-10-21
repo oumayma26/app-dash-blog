@@ -9,7 +9,7 @@ import { ArticleLogic } from './../../ngrx/logic/articles.store';
 export class MyArticlesComponent implements OnInit {
   articles: any[];
   constructor(public _logic: ArticleLogic) {
-    this._logic.getListArticles();
+    this._logic.getArticlesByEmail(localStorage.getItem('email'));
    }
 
   ngOnInit() {

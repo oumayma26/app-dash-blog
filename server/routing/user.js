@@ -16,14 +16,16 @@ const UserModel = mongoose.model("users",User)
 const article = require("../models/article")
 const articleModel = mongoose.model("article", article)
 
+const role = require("../models/role")
+const roleModel = mongoose.model("role",role)
+
 var passport = require('passport');
 require('../config/passport')(passport);
 
 
 
-    router.post("/register", (req,res)=>{
-      res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    router.post("/register",passport.authenticate("jwt", { session: false}), (req,res)=>{
+
         bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash(req.body.password, salt, function(err, hash) {
                 req.body.password = hash;
@@ -35,38 +37,23 @@ require('../config/passport')(passport);
         })
     })
 
-    router.get("/articles/:username", async(req,res)=> {
-      res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Headers", "X-Requested-With");
-        const result = await UserModel.findOne({username: req.params.username})
-            .populate("articles", "title")
-            .populate("articles", "date")
-            .sort({date: 'descending'})
-            .exec();
-                res.send(result);
 
-    })
 
-    router.post("/update/:id", async(req,res)=>{
-      res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    router.post("/update/:id",passport.authenticate("jwt", { session: false}), async(req,res)=>{
 
         const result = await UserModel.findByIdAndUpdate({_id: req.params.id}, req.body).exec()
         res.send(result)
     })
 
-    router.get("/delete/:id",(req,res)=>{
-      res.header("Access-Control-Allow-Origin", "*");
-      res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    router.get("/delete/:id",passport.authenticate("jwt", { session: false}),(req,res)=>{
+
       user =  UserModel.findOneAndDelete(
            {_id: req.params.id} ).exec();
 
        res.send(user);
    })
 
-   router.post("/addArticle/:username",async(req,res)=>{
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+   router.post("/addArticle/:username",passport.authenticate("jwt", { session: false}),async(req,res)=>{
 
     const u = await UserModel.findOne({username:req.params.username}).exec();
 
@@ -89,9 +76,7 @@ require('../config/passport')(passport);
   })
 
   //delete article
-  router.get("/deleteArticle/:username/:articleId", async(req,res)=>{
-    res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  router.get("/deleteArticle/:username/:articleId", passport.authenticate("jwt", { session: false}),async(req,res)=>{
 
     let index= req.params.index;
     const u = await UserModel.findOne({username:req.params.username}).exec();
@@ -111,7 +96,7 @@ require('../config/passport')(passport);
        if (token) {
       const result = await UserModel.find();
       res.send(result);
-    }else {
+    } else {
       return res.status(403).send({success: false, msg: 'Unauthorized.'});
     }
 
@@ -125,6 +110,13 @@ require('../config/passport')(passport);
     const u = await UserModel.findOne({$or: [ { name: req.params.name }, { lastname: req.params.name } ] }).exec();
     res.send(u);
   });
+
+  //---------- roles
+  router.post("/addRole",passport.authenticate("jwt", { session: false}),async(req,res)=>{
+    const u = await roleModel(req.body).save(function(err,role){
+      res.send(role)
+  })
+})
 
 
   getToken = function (headers) {

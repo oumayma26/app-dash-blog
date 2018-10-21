@@ -21,6 +21,8 @@ export class UserService {
     return this.http.get('http://localhost:3000/users');
   }
 
+
+
   deleteUser(id: any) {
     const headers = new HttpHeaders()
     .set('Access-Control-Allow-Origin', '*')

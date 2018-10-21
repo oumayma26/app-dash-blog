@@ -1,3 +1,4 @@
+import { Article } from './../../models/article.model';
 import {Action} from '@ngrx/store';
 
 import { User } from '../../models/user.model';
@@ -11,6 +12,7 @@ export enum ActionTypes {
 
   SearchUser = '[User] SearchUser',
   SearchUserSuccess = '[User] SearchUserSuccess'
+
 
 }
 /*
@@ -70,6 +72,8 @@ export class GetAllUserSuccess implements Action {
 
   }
 }
+
+
 
 export type allActions =
 GetAllUser

@@ -1,3 +1,4 @@
+import { ArticlesByEmail } from './../store/article/article.action';
 
 import { GetAllCategory } from './../store/Category/category.action';
 import { CategoryState } from './../store/category/category.state';
@@ -29,6 +30,10 @@ export class ArticleLogic {
 
   delteArticle(id: any) {
     this._store.dispatch(new DeleteArticle(id));
+  }
+
+  getArticlesByEmail(email: string) {
+    this._store.dispatch(new ArticlesByEmail(email));
   }
 
 

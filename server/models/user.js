@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 const Article = require("../models/article")
+const Role = require("../models/role")
 const ArticleModel = mongoose.model("article", Article)
 
 const user = new mongoose.Schema({
@@ -22,7 +23,12 @@ const user = new mongoose.Schema({
     articles: [{
         type: Schema.Types.ObjectId,
         ref: "article"
+    }],
+    roles : [{
+      type: Schema.Types.ObjectId,
+      ref: "role"
     }]
+
 
 })
 

@@ -33,6 +33,10 @@ export class ArticlesService {
 
   }
 
+  getArticlesByEmail(email) {
+    return this.http.get(this.url + '/' + email);
+  }
+
   /*
     category
     */

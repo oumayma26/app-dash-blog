@@ -22,13 +22,10 @@ export class AuthService {
       if (result && result.token) {
         console.log(result);
         localStorage.setItem('jwt', result.token);
+        localStorage.setItem('email', result.email);
+        localStorage.setItem('id', result._id);
         this.token = result.token;
-      //   this.http.get('http://localhost:3000/api/user')
-      // .subscribe(res => {
-      //   console.log('userrrrs', res);
-      // }
-      // );
-        this.token = result.token;
+
         return result;
       }   else {
         return null;

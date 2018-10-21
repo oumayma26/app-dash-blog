@@ -7,10 +7,15 @@ import { User } from '../../models/user.model';
 export enum ActionTypes {
   GetAllArticle = '[Article] GetAllArticle',
   GetAllArticleSuccess = '[Article] GetAllArticleSuccess',
+
   DeleteArticle = '[Article] DeleteArticle',
   DeleteArticleSuccess = '[Article] DeleteArticleSuccess',
+
   GetAllCategory = '[Category] GetAllCategory',
-  GetAllCategorySuccess = '[Category] GetAllCategorySuccess'
+  GetAllCategorySuccess = '[Category] GetAllCategorySuccess',
+
+  ArticlesByEmail = '[Article] ArticleByEmail',
+  ArticlesByEmailSuccess = '[Article] ArticleByEmailSuccess',
 }
 
 /*
@@ -51,26 +56,28 @@ export class GetAllArticleSuccess implements Action {
     }
   }
 
+/*
+  -------------- articles by email -------------------------------------- */
+  export class ArticlesByEmail implements Action {
 
-  /*
-  -------------- All Category -------------------------------------- */
-// export class GetAllCategory implements Action {
-//   readonly type = ActionTypes.GetAllCategory;
+    readonly type = ActionTypes.ArticlesByEmail;
 
-//   constructor() {
+    constructor(public email: string) {
 
-//   }
-// }
+    }
+  }
 
-// export class GetAllCategorySuccess implements Action {
-//   readonly type = ActionTypes.GetAllCategorySuccess;
+  export class ArticlesByEmailSuccess implements Action {
+    readonly type = ActionTypes.ArticlesByEmailSuccess;
+    constructor(public articles: Article[]) {
 
-//   constructor(public categoris: Category[]) {
+    }
+  }
 
-//   }
-// }
 export type allActions =
 GetAllArticle
   | GetAllArticleSuccess
   | DeleteArticle
-  | DeleteArticleSuccess;
+  | DeleteArticleSuccess
+  | ArticlesByEmail
+  | ArticlesByEmailSuccess;
