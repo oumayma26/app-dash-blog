@@ -12,10 +12,11 @@
     </p>
   </mat-card-content>
   <mat-card-actions>
-      <div class="stats">
-          <i class="ti-comment" style="color:#68B3C8 "></i><small style="color:#68B3C8; padding-right: 10px; "> 2 comments</small>
-          <i class="ti-heart" style="color:#cc2478  "></i><small style="color:#cc2478  ; padding-right: 10px;">2 Like</small>
-          <a (click)="seeMore(article)"><small mat-button style="float: right">See More</small></a>
-        </div>
+    <div class="stats">
+      <i class="ti-comment" style="color:#68B3C8 "></i><small style="color:#68B3C8; padding-right: 10px; "> 2 comments</small>
+      <a (click)="likeArticle(id, article._id)"> <i class="ti-heart" style="color:#cc2478"></i><small style="color:#cc2478  ; padding-right: 10px;"><span *ngIf="article.like?.like>0">{{article.like?.like}}</span>
+          Like</small></a>
+      <a (click)="seeMore(article)"><small mat-button style="float: right">See More</small></a>
+    </div>
   </mat-card-actions>
 </mat-card>

@@ -5,6 +5,9 @@ var Schema = mongoose.Schema;
 const User = require("../models/user")
 const UserModel = mongoose.model("user", User)
 
+const like = require('../models/like')
+
+
 const categorySchema = require("./category")
 
 const category = require("../models/category")
@@ -32,7 +35,16 @@ const article = new mongoose.Schema({
         filename: String,
         path: String,
         size: Number
-    }
+    },
+
+    filename: {type: String},
+
+    path:  { type: String },
+
+    originalname: {type: String},
+
+    caption: { type: String },
+    like: {type : Schema.Types.ObjectId, ref : 'like'}
 })
 
 

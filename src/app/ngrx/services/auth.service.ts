@@ -33,6 +33,12 @@ export class AuthService {
      });
   }
 
+  register(user) {
+
+    return this.http.post<any>('http://localhost:3000/users/register', user);
+
+  }
+
   logout() {
       this.token = null;
       localStorage.removeItem('jwt');

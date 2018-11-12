@@ -24,10 +24,7 @@ const user = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: "article"
     }],
-    roles : [{
-      type: Schema.Types.ObjectId,
-      ref: "role"
-    }]
+    role : {type: String}
 
 
 })

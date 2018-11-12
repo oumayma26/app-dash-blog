@@ -16,6 +16,9 @@ export enum ActionTypes {
 
   ArticlesByEmail = '[Article] ArticleByEmail',
   ArticlesByEmailSuccess = '[Article] ArticleByEmailSuccess',
+
+  LikeArticle = '[Like] LikeArticle',
+  LikeArticleSuccess = '[Like] LikeArticleSuccess'
 }
 
 /*
@@ -74,10 +77,33 @@ export class GetAllArticleSuccess implements Action {
     }
   }
 
+ /*
+  -------------- like article -------------------------------------- */
+  export class LikeArticle implements Action {
+
+    readonly type = ActionTypes.LikeArticle;
+
+    constructor(public user: string , public article: string) {
+
+    }
+  }
+
+  export class LikeArticleSuccess implements Action {
+    readonly type = ActionTypes.LikeArticleSuccess;
+    constructor(public article: any) {
+      console.log(article);
+    }
+  }
+
+
+
+
 export type allActions =
 GetAllArticle
   | GetAllArticleSuccess
   | DeleteArticle
   | DeleteArticleSuccess
   | ArticlesByEmail
-  | ArticlesByEmailSuccess;
+  | ArticlesByEmailSuccess
+  | LikeArticle
+  | LikeArticleSuccess;

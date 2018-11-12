@@ -24,13 +24,18 @@ require('../config/passport')(passport);
 
 
 
-    router.post("/register",passport.authenticate("jwt", { session: false}), (req,res)=>{
+    router.post("/register", (req,res)=>{
 
         bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash(req.body.password, salt, function(err, hash) {
                 req.body.password = hash;
                 UserModel(req.body).save(err => {
+                  if(err){
                     res.send(err)
+                  }else {
+                    res.send({result: 1})
+                  }
+
                 });
             });
 
@@ -92,7 +97,6 @@ require('../config/passport')(passport);
 
   router.get("/",  passport.authenticate("jwt", { session: false}),async(req,res)=>{
     var token = getToken(req.headers);
-    console.log("token",token)
        if (token) {
       const result = await UserModel.find();
       res.send(result);

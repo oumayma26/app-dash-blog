@@ -1,0 +1,31 @@
+<form   [formGroup]="myForm" >
+  <div class="imgcontainer">
+    Register
+  </div>
+
+  <div class="container">
+
+    <label for="username"><b>Username</b></label>
+    <input type="text" formControlName="username" placeholder="Enter Username" name="username" required>
+
+    <label for="name"><b>Name</b></label>
+    <input type="text" formControlName="name" placeholder="Enter Name" name="name" required>
+
+    <label for="lastname"><b>Last name</b></label>
+    <input type="text" formControlName="lastname" placeholder="Enter last name" name="lastname" required>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" formControlName="email" placeholder="Enter Username" name="email" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" formControlName="password" placeholder="Enter Password" name="psw" required>
+
+    <button type="submit" (click)="save()">Save</button>
+
+  </div>
+
+  <!-- <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div> -->
+</form>

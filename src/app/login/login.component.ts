@@ -31,7 +31,13 @@ export class LoginComponent implements OnInit {
       console.log('email', this.myForm.value.email);
       this.authService.login(this.myForm.value.email, this.myForm.value.password).subscribe(
         data => {
+
+          if (data.user.role === 'admin') {
             this.router.navigate(['dashbord']);
+          } else {
+            this.router.navigate(['blog']);
+          }
+
         },
         error => {
 

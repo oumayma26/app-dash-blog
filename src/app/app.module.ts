@@ -99,6 +99,7 @@ import { MyArticlesComponent } from './blog/my-articles/my-articles.component';
 import { NewArticleComponent } from './blog/new-article/new-article.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { CardArticleComponent } from './blog/card-article/card-article.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -119,7 +120,8 @@ import { CardArticleComponent } from './blog/card-article/card-article.component
     ArticleblogComponent,
     MyArticlesComponent,
     NewArticleComponent,
-    CardArticleComponent
+    CardArticleComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

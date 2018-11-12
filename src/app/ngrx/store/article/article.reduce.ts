@@ -1,7 +1,7 @@
 import { ArticleState } from './article.state';
 import {allActions,
    ActionTypes} from './article.action';
-import { deleteFromArray } from '../../../generic/util';
+import { deleteFromArray, updateArray } from '../../../generic/util';
 
 export const initialState: ArticleState = {
   articles: [],
@@ -14,18 +14,23 @@ export function articleReducer(state = initialState, action: allActions): Articl
 
     // get all articles
     case ActionTypes.GetAllArticle:
-     // get all ArticlesByEmail
-     case ActionTypes.ArticlesByEmail:
+    // get all ArticlesByEmail
+    case ActionTypes.ArticlesByEmail:
 
     // delete user
     case ActionTypes.DeleteArticle:
-      return {...state, loading: true};
 
+    // like article
+    case ActionTypes.LikeArticle:
+      return {...state, loading: true};
+    // like article sucess
+    case ActionTypes.LikeArticleSuccess:
+      return {...state, loading: false, articles: updateArray(state.articles, action.article)};
     // all articles success
     case ActionTypes.GetAllArticleSuccess:
       return {articles: action.articles, loading: false};
 
-      case ActionTypes.ArticlesByEmailSuccess:
+    case ActionTypes.ArticlesByEmailSuccess:
       return {articles: action.articles, loading: false};
 
     // delete user success

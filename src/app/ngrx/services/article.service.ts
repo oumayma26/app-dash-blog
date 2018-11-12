@@ -5,6 +5,7 @@ import {Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import { map } from 'rxjs/operators';
+import { LikeArticle } from '../store/article/article.action';
 
 
 @Injectable()
@@ -30,6 +31,12 @@ export class ArticlesService {
     .set('Access-Control-Allow-Origin', '*')
     .set ('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
     return  this.http.get(this.url + '/delete/' + id);
+
+  }
+
+  findArticlebyId(id: any) {
+
+    return  this.http.get(this.url + '/findById/' + id);
 
   }
 
@@ -60,5 +67,17 @@ export class ArticlesService {
     return  this.http.post<Category>( 'http://localhost:3000/article/addCategory', c );
   }
 
+  /*
+    Like
+    */
 
+    likeArticle(article, user) {
+
+      console.log('article - service');
+      const like = {
+        user: user,
+        article: article
+      };
+      return this.http.post<any>('http://localhost:3000/article/like', like);
+    }
 }

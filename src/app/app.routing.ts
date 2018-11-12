@@ -3,6 +3,7 @@ import { HomeblogComponent } from './blog/homeblog/homeblog.component';
 import { AuthGuard } from './ngrx/services/auth-guard.service';
 import { DashComponent } from "./dash/dash.component";
 import { LoginComponent } from "./login/login.component";
+import { RegisterComponent } from './register/register.component';
 import { BlogComponent } from "./blog/blog.component";
 import { UsersComponent } from "./dash/users/users.component";
 
@@ -60,6 +61,11 @@ export const AppRoutes: Routes = [
   {
     path : 'login',
     component : LoginComponent
+  },
+
+  {
+    path : 'register',
+    component : RegisterComponent
   },
   {path: '', redirectTo : 'dashbord/users' ,  pathMatch: 'full', canActivate: [AuthGuard] }
 

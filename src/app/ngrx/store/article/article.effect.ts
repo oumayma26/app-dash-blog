@@ -8,7 +8,8 @@ import {Actions, Effect} from '@ngrx/effects';
 import {Observable} from 'rxjs/Observable';
 import {Action, Store} from '@ngrx/store';
 import { allActions, ActionTypes, GetAllArticle, GetAllArticleSuccess,
-  DeleteArticle, DeleteArticleSuccess, ArticlesByEmail , ArticlesByEmailSuccess } from './article.action';
+  DeleteArticle, DeleteArticleSuccess, ArticlesByEmail , ArticlesByEmailSuccess,
+  LikeArticle, LikeArticleSuccess } from './article.action';
 import {catchError, map, mergeMap, withLatestFrom} from 'rxjs/operators';
 import {of} from 'rxjs/internal/observable/of';
 
@@ -33,16 +34,9 @@ export class ArticleEffects {
     mergeMap(([action, storeState]) =>
       this._service.getAll()
         .pipe(map((res: any) => {
-
-      //  this._service.getAllCategory().pipe(map((res2: any) => {
-
              return new GetAllArticleSuccess(res as Article[]);
 
-
-          }
-          )
-          // ,
-          // catchError(() => of(new GeneralErrorDialog()))
+          })
         )
     ));
 
@@ -59,18 +53,33 @@ export class ArticleEffects {
         )
     ));
 
-     // delete user
+     // delete article
      @Effect()
      deleteArticle$: Observable<Action> = this.actions$.ofType<DeleteArticle>(ActionTypes.DeleteArticle).pipe(
        withLatestFrom(this.store$),
        mergeMap(([action, storeState]) =>
-         this._service.deleteArticle(action.id).pipe(map(() => {
+         this._service.deleteArticle(action.id).pipe(map((res) => {
 
+          console.log(res);
              return new DeleteArticleSuccess(action.id);
            })
            // ), catchError(() => of ())
 
          )
        ));
+
+     // like article
+     @Effect()
+     likeArticlee$: Observable<Action> = this.actions$.ofType<LikeArticle>(ActionTypes.LikeArticle).pipe(
+      withLatestFrom(this.store$),
+      mergeMap(([action, storeState]) =>
+
+        this._service.likeArticle(action.article, action.user).pipe(map((res: any) => {
+          console.log('service', res);
+            return new LikeArticleSuccess(res.article);
+
+          })
+        )
+      ));
 
 }

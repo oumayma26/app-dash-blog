@@ -1,24 +1,34 @@
-import { ArticleblogComponent } from './../articleblog/articleblog.component';
-import { MatDialog } from '@angular/material';
-import { Article } from './../../ngrx/models/article.model';
-import { ArticleLogic } from './../../ngrx/logic/articles.store';
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  ArticleblogComponent
+} from './../articleblog/articleblog.component';
+import {
+  MatDialog
+} from '@angular/material';
+import {
+  Article
+} from './../../ngrx/models/article.model';
+import {
+  ArticleLogic
+} from './../../ngrx/logic/articles.store';
+import {
+  Component,
+  OnInit,
+  Input
+} from '@angular/core';
 
-@Component ({
+@Component({
   selector: 'app-homeblog',
   templateUrl: './homeblog.component.html',
-  styleUrls: ['./homeblog.component.css',
-]
+  styleUrls: ['./homeblog.component.css', ]
 })
 export class HomeblogComponent implements OnInit {
 
 
   articles: any[];
 
-  constructor(public _logic: ArticleLogic,
-    ) {
+  constructor(public _logic: ArticleLogic, ) {
     this._logic.getListArticles();
-   }
+  }
 
 
 

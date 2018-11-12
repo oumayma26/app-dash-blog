@@ -30,7 +30,7 @@ router.post('/login', async (req, res) => {
                   res.send({message: "User found",
                   token : token,
                   email: result.email,
-                  roles : result.roles,
+
                 user: result,
                 _id : result._id});
                 } else {

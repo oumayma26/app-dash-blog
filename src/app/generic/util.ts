@@ -1,7 +1,9 @@
 export function updateArray(arr: any[], element: any): any {
 
+  console.log('updateArray', element);
+
   for (let i = 0; i < arr.length; i++) {
-    if (element['id'] === arr[i]['id']) {
+    if (element['_id'] === arr[i]['_id']) {
       arr[i] = element;
     }
   }

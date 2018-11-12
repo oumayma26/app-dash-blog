@@ -7,4 +7,5 @@ export interface Article {
   date:  Date;
   author: User;
   category: Category;
+  like: any;
 }
