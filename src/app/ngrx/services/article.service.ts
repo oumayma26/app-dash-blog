@@ -80,4 +80,9 @@ export class ArticlesService {
       };
       return this.http.post<any>('http://localhost:3000/article/like', like);
     }
+
+    addArticle(article) {
+      return  this.http.post<Article>( 'http://localhost:3000/article/save', article);
+    }
+
 }

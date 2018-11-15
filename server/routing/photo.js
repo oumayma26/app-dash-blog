@@ -26,16 +26,16 @@ const PhotoModel = mongoose.model("Photos", Photo)
 router.post('/img', upload.single('file'), function (req, res, next) {
 
 
-  var document = {
-    path: req.file.path,
-    filename: req.file.filename,
-    originalname: req.file.originalname
-  //  caption: req.file.
-  };
-
-  PhotoModel(document).save(err => {
-    res.send(req.file);
-  });
+  // var document = {
+  //   path: req.file.path,
+  //   filename: req.file.filename,
+  //   originalname: req.file.originalname
+  // //  caption: req.file.
+  // };
+  res.send(req.file);
+  // PhotoModel(document).save(err => {
+  //   res.send(req.file);
+  // });
 
 })
 

@@ -9,12 +9,13 @@ import {Observable} from 'rxjs/Observable';
 import {Action, Store} from '@ngrx/store';
 import { allActions, ActionTypes, GetAllArticle, GetAllArticleSuccess,
   DeleteArticle, DeleteArticleSuccess, ArticlesByEmail , ArticlesByEmailSuccess,
-  LikeArticle, LikeArticleSuccess } from './article.action';
+  LikeArticle, LikeArticleSuccess, AddArticle, AddArticleSuccess } from './article.action';
 import {catchError, map, mergeMap, withLatestFrom} from 'rxjs/operators';
 import {of} from 'rxjs/internal/observable/of';
 
 import {environment} from '../../../../environments/environment';
 import { ArticlesService } from '../../services/article.service';
+import { MatSnackBar } from '@angular/material';
 export interface AppState {
   articles: ArticleState;
 }
@@ -24,7 +25,8 @@ export class ArticleEffects {
 
   constructor(private actions$: Actions,
     private _service:  ArticlesService,
-    private store$: Store<AppState>) {
+    private store$: Store<AppState>,
+    public snackBar: MatSnackBar) {
 }
 
  // all articles
@@ -82,4 +84,21 @@ export class ArticleEffects {
         )
       ));
 
+
+      @Effect()
+     addArticle$: Observable<Action> = this.actions$.ofType<AddArticle>(ActionTypes.AddArticle).pipe(
+      withLatestFrom(this.store$),
+      mergeMap(([action, storeState]) =>
+
+        this._service.addArticle(action.article).pipe(map((res: any) => {
+          console.log('service', res);
+            return new AddArticleSuccess(action.article);
+
+            this.snackBar.open('Article created', 'ok', {
+              duration: 2000,
+            });
+
+          })
+        )
+      ));
 }

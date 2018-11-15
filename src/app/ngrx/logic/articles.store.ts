@@ -1,4 +1,4 @@
-import { ArticlesByEmail, LikeArticle } from './../store/article/article.action';
+import { ArticlesByEmail, LikeArticle, AddArticle } from './../store/article/article.action';
 
 import { GetAllCategory } from './../store/Category/category.action';
 import { CategoryState } from './../store/category/category.state';
@@ -41,5 +41,7 @@ export class ArticleLogic {
     this._store.dispatch(new LikeArticle(user, article));
   }
 
-
+  saveArticle(article) {
+    this._store.dispatch(new AddArticle(article));
+  }
 }

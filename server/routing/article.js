@@ -81,21 +81,75 @@ router.post('/img', upload.single('file'), function (req, res, next) {
 
 })
 
+router.post("/files", upload.single('file'), async(req,res)=> {
+  // var article = {
+
+  //   path: req.file.path,
+  //   filename: req.file.filename,
+  //   originalname: req.file.originalname
+  // }
+
+  res.send(req.file);
+});
+
+
+
 router.post("/save", upload.single('file'), async(req,res)=> {
 
-    var article = {
-      title: req.body.title,
-      context: req.body.context,
-      author: req.body.author,
-      category: req.body.category,
-      // path: req.file.path,
-      // filename: req.file.filename,
-      // originalname: req.file.originalname
+
+    if (req.file){
+      var article = {
+        title: req.body.title,
+        context: req.body.context,
+        author: req.body.author,
+        category: req.body.category,
+        path: req.file.path,
+        filename: req.file.filename,
+        originalname: req.file.originalname
+      }
+    } else {
+      var article = {
+        title: req.body.title,
+        context: req.body.context,
+        author: req.body.author,
+        category: req.body.category,
+        // path: req.file.path,
+        // filename: req.file.filename,
+        // originalname: req.file.originalname
+      }
     }
 
-    articleModel(article).save(err => {
-        res.send(err)
-    });
+    var article = articleModel(article);
+
+    article.save();
+    article.on('save', function(new_article) {
+
+
+          const result=  UserModel.findByIdAndUpdate({_id: new_article.author}, {
+            $push: {
+              "articles" : new_article._id
+            }
+          }).exec();
+
+            res.send({ article: new_article});
+
+
+
+
+    })
+
+
+
+
+  //  res2= UserModel.findByIdAndUpdate({_id: req.body.author}, {
+  //     $push: {
+  //       article : res._id
+  //     }
+  //   })
+
+
+
+
   })
 
 router.get("/", async(req,res)=>{

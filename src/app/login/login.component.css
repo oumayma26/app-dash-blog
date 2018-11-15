@@ -21,7 +21,10 @@ button {
   cursor: pointer;
   width: 100%;
 }
-
+.cancelbtn{
+  background-color:cornflowerblue !important;
+  color: white !important;
+}
 /* Add a hover effect for buttons */
 button:hover {
   opacity: 0.8;

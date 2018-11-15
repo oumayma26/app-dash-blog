@@ -1,26 +1,26 @@
 <div class="content-new-article">
   <div class="row">
-    <div>
+    <form  [formGroup]="myForm" (ngSubmit)="save()">
       <div style="color: #cc2478; font-weight: bold"><h3>New Article</h3></div>
         <div class="example-container">
             <mat-form-field>
-              <input autocomplete="off" matInput placeholder="Title">
+              <input autocomplete="off" formControlName="title" matInput placeholder="Title">
             </mat-form-field>
 
             <mat-form-field>
-                <mat-select placeholder="Category">
-                  <mat-option value="option">Category 1</mat-option>
-                  <mat-option value="option">Category 2</mat-option>
+                <mat-select placeholder="Category" formControlName="category">
+                  <mat-option [value]="category._id" *ngFor="let category of categories" >{{category.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field>
-              <textarea matInput [froalaEditor] placeholder="Context"></textarea>
+              <textarea matInput [froalaEditor] placeholder="Context" formControlName="context"></textarea>
             </mat-form-field>
 
         </div>
-    </div>
-    <button mat-button style="float: right; background-color: #68B3C8; color: white" > Save</button>
+        <button type="submit" mat-button style="float: right; background-color: #68B3C8; color: white"> Save</button>
+
+    </form>
 
   </div>
 

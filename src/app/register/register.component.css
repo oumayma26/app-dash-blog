@@ -10,7 +10,10 @@ input[type=text], input[type=password] {
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
-
+.cancelbtn{
+  background-color:cornflowerblue !important;
+  color: white !important;
+}
 /* Set a style for all buttons */
 button {
   background-color:cornflowerblue;

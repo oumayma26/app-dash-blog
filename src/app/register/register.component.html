@@ -20,10 +20,13 @@
     <label for="psw"><b>Password</b></label>
     <input type="password" formControlName="password" placeholder="Enter Password" name="psw" required>
 
-    <button type="submit" (click)="save()">Save</button>
 
   </div>
 
+  <div class="container">
+    <button type="button" class="cancelbtn"  (click)="save()">Save</button>
+    <span class="psw">   <a [routerLink]="['/login']">Login</a></span>
+  </div>
   <!-- <div class="container" style="background-color:#f1f1f1">
     <button type="button" class="cancelbtn">Cancel</button>
     <span class="psw">Forgot <a href="#">password?</a></span>

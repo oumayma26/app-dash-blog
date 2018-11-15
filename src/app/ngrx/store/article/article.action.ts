@@ -18,7 +18,11 @@ export enum ActionTypes {
   ArticlesByEmailSuccess = '[Article] ArticleByEmailSuccess',
 
   LikeArticle = '[Like] LikeArticle',
-  LikeArticleSuccess = '[Like] LikeArticleSuccess'
+  LikeArticleSuccess = '[Like] LikeArticleSuccess',
+
+  AddArticle= '[Article] AddArticle',
+  AddArticleSuccess= '[Article] AddArticleSuccess',
+
 }
 
 /*
@@ -95,7 +99,23 @@ export class GetAllArticleSuccess implements Action {
     }
   }
 
+  export class AddArticle implements Action {
 
+    readonly type = ActionTypes.AddArticle;
+
+    constructor(public article: any) {
+
+    }
+  }
+
+  export class AddArticleSuccess implements Action {
+
+    readonly type = ActionTypes.AddArticleSuccess;
+
+    constructor(public article: any) {
+
+    }
+  }
 
 
 export type allActions =
@@ -106,4 +126,6 @@ GetAllArticle
   | ArticlesByEmail
   | ArticlesByEmailSuccess
   | LikeArticle
-  | LikeArticleSuccess;
+  | LikeArticleSuccess
+  | AddArticle
+  | AddArticleSuccess  ;
