@@ -26,20 +26,24 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log('login');
+
     if (this.myForm.valid) {
       this.authService.login(this.myForm.value.email, this.myForm.value.password).subscribe(
         data => {
-
-          if (data.user.role === 'admin') {
-            this.router.navigate(['dashbord']);
-          } else {
-            this.router.navigate(['blog']);
+          console.log(data);
+          if (data) {
+            if (data.user) {
+              if (data.user.role === 'admin') {
+                this.router.navigate(['dashbord']);
+              } else {
+                this.router.navigate(['blog']);
+              }
+            }
           }
 
         },
         error => {
-
+          console.log(error);
             this.router.navigate(['login']);
         });
 

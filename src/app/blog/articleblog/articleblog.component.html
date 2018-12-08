@@ -1,10 +1,12 @@
 <mat-card class="example-card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{article.title}}</mat-card-title>
+    <mat-card-title><b>{{article.title}}</b></mat-card-title>
     <mat-card-subtitle>{{article.author.name}} {{article.author.lastname}}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image width="200" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <img *ngIf="article?.path" mat-card-image [src]="article?.path" alt="Picture Not found">
+
+  <img *ngIf="article?.path==undefined " mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Picture Not found">
   <mat-card-content>
     <p [innerHTML]="article.context">
     </p>
@@ -12,7 +14,8 @@
   <mat-card-actions>
       <div class="stats">
           <i class="ti-comment" style="color:#68B3C8 "></i><small style="color:#68B3C8; padding-right: 10px; ">2 comments</small>
-          <i class="ti-heart" style="color:#cc2478  "></i><small style="color:#cc2478  ; padding-right: 10px;">{{article.like?.like}} Likess</small>
+          <a (click)="likeArticle(id, article?._id)"> <i class="ti-heart" style="color:#cc2478"></i><small style="color:#cc2478  ; padding-right: 10px;"><span *ngIf="article.like?.like>0">{{article.like?.like}}</span>
+            Like</small></a>
 
         </div>
   </mat-card-actions>

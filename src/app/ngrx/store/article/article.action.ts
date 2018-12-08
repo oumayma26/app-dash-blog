@@ -103,7 +103,7 @@ export class GetAllArticleSuccess implements Action {
 
     readonly type = ActionTypes.AddArticle;
 
-    constructor(public article: any) {
+    constructor(public article: Article) {
 
     }
   }

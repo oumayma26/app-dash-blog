@@ -82,7 +82,18 @@ export class ArticlesService {
     }
 
     addArticle(article) {
+
+      const headers: HttpHeaders = new HttpHeaders({
+        'Content-Type': undefined
+      });
+
+
       return  this.http.post<Article>( 'http://localhost:3000/article/save', article);
+    }
+
+    saveFile(id, file: FormData) {
+      return  this.http.post<Article>( 'http://localhost:3000/article/saveFile/' + id , file);
+
     }
 
 }

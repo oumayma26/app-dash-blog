@@ -17,10 +17,29 @@
               <textarea matInput [froalaEditor] placeholder="Context" formControlName="context"></textarea>
             </mat-form-field>
 
-        </div>
+                <input id="file" name="file" ng-disabled="uploading" (change)="onFileSelected($event)" type="file" />
+
+                <!-- <button class="btn btn-primary" type="button" (click)="onUpload()"> Upload</button> -->
+
+                <br>
+                <!-- <img style="width: 30%; margin-left: auto; margin-right: auto;" [src]="selectedFile?.name || 'https://lh5.ggpht.com/_S0f-AWxKVdM/S5TpU6kRmUI/AAAAAAAAL4Y/wrjx3_23kw4/s72-c/d_silhouette%5B2%5D.jpg?imgmax=800'"> -->
+
+                <br>
+                <br>
+                <div ng-show="message">
+                  <!-- <div [ngClass]="'alert': true">{{message}}</div> -->
+                </div>
+
+              </div>
+
+        <!-- <div [hidden]="uploading" class="progress">
+            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+        </div> -->
+        <br>
         <button type="submit" mat-button style="float: right; background-color: #68B3C8; color: white"> Save</button>
 
     </form>
+
 
   </div>
 

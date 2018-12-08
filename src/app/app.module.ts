@@ -31,7 +31,6 @@ import { NavbarModule} from './shared/navbar/navbar.module';
 import { FixedPluginModule} from './shared/fixedplugin/fixedplugin.module';
 import { NguiMapModule} from '@ngui/map';
 import { UserComponent } from './user/user.component';
-import { TypographyComponent } from './typography/typography.component';
 
 
 
@@ -100,12 +99,14 @@ import { NewArticleComponent } from './blog/new-article/new-article.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { CardArticleComponent } from './blog/card-article/card-article.component';
 import { RegisterComponent } from './register/register.component';
+import { HomeGuard } from './ngrx/services/home-guard.service';
+import { AdminGuard } from './ngrx/services/admin-service';
+import { UserGuard } from './ngrx/services/user-guard.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    TypographyComponent,
     UsersComponent,
     ArticlesComponent,
     AlertMsgComponent,
@@ -199,6 +200,9 @@ import { RegisterComponent } from './register/register.component';
     CategoryLogic,
     AuthService,
     AuthGuard,
+    HomeGuard,
+    UserGuard,
+    AdminGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

@@ -86,19 +86,27 @@ export class ArticleEffects {
 
 
       @Effect()
-     addArticle$: Observable<Action> = this.actions$.ofType<AddArticle>(ActionTypes.AddArticle).pipe(
-      withLatestFrom(this.store$),
-      mergeMap(([action, storeState]) =>
+      addArticle$: Observable<Action> = this.actions$.ofType<AddArticle>(ActionTypes.AddArticle).pipe(
+       withLatestFrom(this.store$),
+       mergeMap(([action, storeState]) =>
 
-        this._service.addArticle(action.article).pipe(map((res: any) => {
-          console.log('service', res);
-            return new AddArticleSuccess(action.article);
+         this._service.addArticle(action.article).pipe(map((res: any) => {
+           console.log('service', res);
 
+           this._service.saveFile(res.article._id, action.article.file).subscribe(res2 => {
             this.snackBar.open('Article created', 'ok', {
               duration: 2000,
             });
+            console.log('res2', res2);
+           });
 
-          })
-        )
-      ));
+           return new AddArticleSuccess(action.article);
+
+
+
+           })
+         )
+       ));
+
+
 }

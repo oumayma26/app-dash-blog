@@ -20,7 +20,7 @@ const path = require('path');
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/')
+    cb(null, './uploads/')
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + path.extname(file.originalname))
@@ -52,6 +52,8 @@ router.get("/delete/:id",(req,res)=>{
 router.get("/findById/:id",async(req,res)=>{
   console.log(req.params.id)
   const result = await articleModel.findOne({_id: req.params.id})
+  .populate('author' )
+  .populate('category')
   .populate('like')
   .exec();
   res.send(result);
@@ -81,43 +83,34 @@ router.post('/img', upload.single('file'), function (req, res, next) {
 
 })
 
-router.post("/files", upload.single('file'), async(req,res)=> {
+router.post("/saveFile/:id", upload.single('file'), async(req,res)=> {
+
+
   // var article = {
 
-  //   path: req.file.path,
-  //   filename: req.file.filename,
-  //   originalname: req.file.originalname
-  // }
 
-  res.send(req.file);
+
+  const result=  articleModel.findByIdAndUpdate({_id: req.params.id}, {
+    $push: {
+      "path": req.file.path,
+       "filename": req.file.filename,
+       "originalname": req.file.originalname
+    }
+  }).exec();
+
+  res.send(result);
 });
 
 
 
-router.post("/save", upload.single('file'), async(req,res)=> {
+router.post("/save", async(req,res)=> {
 
-
-    if (req.file){
       var article = {
         title: req.body.title,
         context: req.body.context,
         author: req.body.author,
-        category: req.body.category,
-        path: req.file.path,
-        filename: req.file.filename,
-        originalname: req.file.originalname
+        category: req.body.category
       }
-    } else {
-      var article = {
-        title: req.body.title,
-        context: req.body.context,
-        author: req.body.author,
-        category: req.body.category,
-        // path: req.file.path,
-        // filename: req.file.filename,
-        // originalname: req.file.originalname
-      }
-    }
 
     var article = articleModel(article);
 

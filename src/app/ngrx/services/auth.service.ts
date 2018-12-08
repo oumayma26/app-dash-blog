@@ -24,6 +24,7 @@ export class AuthService {
         localStorage.setItem('jwt', result.token);
         localStorage.setItem('email', result.email);
         localStorage.setItem('id', result._id);
+        localStorage.setItem('role', result.role);
         this.token = result.token;
 
         return result;

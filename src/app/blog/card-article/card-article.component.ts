@@ -10,9 +10,7 @@ import {
 import {
   ArticleblogComponent
 } from './../articleblog/articleblog.component';
-import {
-  Article
-} from './../../ngrx/models/article.model';
+
 import {
   Component,
   OnInit,
@@ -66,11 +64,16 @@ export class CardArticleComponent implements OnInit {
       user: user,
       article: article
     };
-
-    // this.http.post<any>('http://localhost:3000/article/like', like).subscribe(res => {
-    //   console.log(res);
-    // });
     this._logic.likeArticle(user, article);
+  }
+
+  slice(str: String) {
+    if (str.length >= 100) {
+      return str.substring(0, 100) + '...';
+    } else {
+      return str;
+    }
+
   }
 
 }

@@ -1,15 +1,13 @@
 <mat-card class="example-card">
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{article.title}}</mat-card-title>
+    <mat-card-title class="title"><b>{{article.title}}</b></mat-card-title>
     <mat-card-subtitle>{{article.author.name}} {{article.author.lastname}}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-  <mat-card-content>
-    <p>
-      {{article.context | slice:0:25}}
-      <span *ngIf="article.context.length>24">...</span>
-    </p>
+  <img *ngIf="article?.path" mat-card-image [src]="article?.path" alt="Picture Not found">
+
+  <img *ngIf="article?.path==undefined " mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Picture Not found">
+  <mat-card-content [innerHTML]="slice(article.context)">
+
   </mat-card-content>
   <mat-card-actions>
     <div class="stats">

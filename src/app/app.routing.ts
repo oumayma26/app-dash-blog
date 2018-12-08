@@ -13,8 +13,8 @@ import { Routes } from "@angular/router";
 
 import { UserComponent } from "./user/user.component";
 
-import { TypographyComponent } from "./typography/typography.component";
 import { MyArticlesComponent } from './blog/my-articles/my-articles.component';
+import { HomeGuard } from './ngrx/services/home-guard.service';
 
 export const AppRoutes: Routes = [
   {
@@ -60,12 +60,14 @@ export const AppRoutes: Routes = [
   },
   {
     path : 'login',
-    component : LoginComponent
+    component : LoginComponent,
+    // canActivate: [HomeGuard]
   },
 
   {
     path : 'register',
-    component : RegisterComponent
+    component : RegisterComponent,
+    // canActivate: [HomeGuard]
   },
   {path: '', redirectTo : 'dashbord/users' ,  pathMatch: 'full', canActivate: [AuthGuard] }
 

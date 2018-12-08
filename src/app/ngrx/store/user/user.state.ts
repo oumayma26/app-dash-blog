@@ -5,4 +5,5 @@ export interface UserState {
   loading?: boolean;
 
   currentUser?: User;
+
 }

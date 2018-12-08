@@ -21,21 +21,22 @@ router.post('/login', async (req, res) => {
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   const result = await UserModel.findOne({
       email: req.body.email
-  }).populate("roles", "name").exec();
+  }).exec();
   console.log(result);
   if (result) {
         const res3 = bcrypt.compareSync( req.body.password,result.password);
                 if(res3==true) {
                   const token = jwt.sign({data: result},  'oumayma')
-                  res.send({message: "User found",
+                  res.send({result:1, message: "User found",
                   token : token,
                   email: result.email,
-
                 user: result,
                 _id : result._id});
                 } else {
-                  res.send({message: "User not found"});
+                  res.send({result:2, message: "Wrong Password"});
                 }
+   } else {
+     res.send({result: 0, message: "User not found"});
    }
 });
 

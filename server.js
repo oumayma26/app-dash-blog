@@ -9,7 +9,8 @@ app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials',true);
     res.setHeader('Access-Control-Expose-Headers','Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+    res.header("Access-Control-Allow-Headers", "Authorization,Origin, X-Requested-With, Content-Type, Accept");
+    // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
   next();
 });
 

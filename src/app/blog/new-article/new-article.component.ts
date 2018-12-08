@@ -1,3 +1,4 @@
+import { Article } from './../../ngrx/models/article.model';
 import {
   Category
 } from './../../ngrx/models/category.model';
@@ -16,7 +17,8 @@ import {
   Component,
   OnInit,
   Output,
-  EventEmitter
+  EventEmitter,
+  ElementRef, Input
 } from '@angular/core';
 import {
   MatSnackBar
@@ -32,10 +34,16 @@ export class NewArticleComponent implements OnInit {
 
   categories: Category[];
 
+  uploading: Boolean = false;
+
+  selectedFile: File = null;
+
   @Output() title = new EventEmitter();
   constructor(public _logic: ArticleLogic,
     private _logicCategories: CategoryLogic,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private el: ElementRef) {
+
     this.title.emit('New Article');
 
     this.myForm = new FormBuilder().group({
@@ -46,6 +54,16 @@ export class NewArticleComponent implements OnInit {
     });
 
     this._logicCategories.allCategory();
+  }
+
+  onFileSelected(event) {
+    console.log(event);
+    this.selectedFile = <File> event.target.files[0];
+  }
+
+  onUpload() {
+    const formData = new FormData();
+    formData.append('file', this.selectedFile, this.selectedFile.name);
   }
 
   get f() {
@@ -59,7 +77,11 @@ export class NewArticleComponent implements OnInit {
 
   save() {
 
-    this._logic.saveArticle(this.myForm.value);
+    const formData = new FormData();
+    formData.append('file', this.selectedFile, this.selectedFile.name);
+    const article: Article = this.myForm.value;
+    article.file = formData;
+    this._logic.saveArticle(article);
   }
 
 }
